@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\client",
+    "\\client\\inventory",
+    "\\client\\inventory\\src",
+    "\\client\\inventory\\src\\app",
+    "\\client\\inventory\\src\\app\\category",
+    "\\client\\inventory\\src\\app\\filter",
+    "\\client\\inventory\\src\\app\\login",
+    "\\client\\inventory\\src\\app\\_guards",
+    "\\client\\inventory\\src\\app\\_services"
+  ],
+  "SelectedNode": "\\client\\inventory\\src\\app\\_services\\category.service.ts",
+  "PreviewInSolutionExplorer": false
+}
