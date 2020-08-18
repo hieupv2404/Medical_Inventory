@@ -60,7 +60,8 @@ public class CategoryController {
         model.addAttribute("tiltePage","Add Category");
         model.addAttribute("modelForm",new Category());
         model.addAttribute("viewOnly",false);
-        return "category-action";
+//        return "category-action";
+        return "index";
     }
 
     @GetMapping("/category/edit/{id}")

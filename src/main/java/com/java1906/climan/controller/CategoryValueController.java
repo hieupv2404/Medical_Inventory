@@ -121,11 +121,9 @@ public class CategoryValueController {
             }else {
                 model.addAttribute("titlePage", "Add Category Value");
             }
-            List<Category> categories = categoryService.findAll();
+            Category category = categoryService.findById(categoryId).get();
             Map<String, String> mapCategory = new HashMap<>();
-            for(Category category : categories) {
-                mapCategory.put(String.valueOf(category.getId()), category.getName());
-            }
+            mapCategory.put(String.valueOf(category.getId()), category.getName());
 
             model.addAttribute("mapCategory", mapCategory);
             model.addAttribute("modelForm", categoryValue);
@@ -134,8 +132,7 @@ public class CategoryValueController {
 
         }
 
-        Category category = new Category();
-        category.setId(categoryValue.getCategoryId());
+        Category category = categoryService.findById(categoryId).get();
         categoryValue.setCategory(category);
 
         categoryValueService.save(categoryValue);
@@ -144,12 +141,12 @@ public class CategoryValueController {
     }
 
     // Update category value
-    @PutMapping("/{categoryValueId}")
-    @HasRole({"STAFF", "ADMIN"})
-    public ResponseEntity<CategoryValue> updateCategoryDetail(@PathVariable("categoryValueId") Integer categoryValueId,
-                                                              @RequestBody CategoryValue categoryValue) {
-        return new ResponseEntity<CategoryValue>(categoryValueService.update(categoryValueId,categoryValue), HttpStatus.OK);
-    }
+//    @PutMapping("/{categoryValueId}")
+//    @HasRole({"STAFF", "ADMIN"})
+//    public ResponseEntity<CategoryValue> updateCategoryDetail(@PathVariable("categoryValueId") Integer categoryValueId,
+//                                                              @RequestBody CategoryValue categoryValue) {
+//        return new ResponseEntity<CategoryValue>(categoryValueService.update(categoryValueId,categoryValue), HttpStatus.OK);
+//    }
 
     // Delete category value
     @DeleteMapping("/{categoryValueId}")

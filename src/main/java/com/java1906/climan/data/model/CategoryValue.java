@@ -17,6 +17,8 @@ public class CategoryValue {
     private Integer activeFlag;
     private Date createDate;
     private Date updateDate;
+
+    @Transient
     private int categoryId;
 
     @ManyToOne

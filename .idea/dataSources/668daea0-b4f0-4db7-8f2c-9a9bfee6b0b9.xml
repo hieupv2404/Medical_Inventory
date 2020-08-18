@@ -949,7 +949,7 @@
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="313" parent="285" name="id_category">
+    <column id="313" parent="285" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
@@ -991,7 +991,7 @@
     </index>
     <key id="321" parent="285" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>id_category</ColNames>
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
     <foreign-key id="322" parent="285" name="FKl5am1hp1v86a6eagkl9ey29d5">
@@ -1518,7 +1518,7 @@
     <foreign-key id="424" parent="298" name="FKr7ksyytcbypne4oupmlfh1knq">
       <ColNames>category_value_id</ColNames>
       <RefTableName>category_value</RefTableName>
-      <RefColNames>id_category</RefColNames>
+      <RefColNames>id</RefColNames>
     </foreign-key>
     <column id="425" parent="299" name="product_info_id">
       <Position>1</Position>
