@@ -2,11 +2,12 @@ package com.java1906.climan.data.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table
-public class Supplier {
+public class Supplier implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
@@ -16,19 +17,10 @@ public class Supplier {
     private String numberPhone;
     private String email;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private  List<InvoiceImport> invoiceImports;
+
 
 
     public Supplier() {
-    }
-
-    public List<InvoiceImport> getInvoiceImports() {
-        return invoiceImports;
-    }
-
-    public void setInvoiceImports(List<InvoiceImport> invoiceImports) {
-        this.invoiceImports = invoiceImports;
     }
 
     public int getSupplierId() {
@@ -46,6 +38,8 @@ public class Supplier {
     public void setSupplierName(String supplierName) {
         this.supplierName = supplierName;
     }
+
+
 
     public String getSupplierAddress() {
         return supplierAddress;

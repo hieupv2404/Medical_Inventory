@@ -1,11 +1,12 @@
 package com.java1906.climan.data.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Invoice {
+public class Invoice implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -15,19 +16,12 @@ public class Invoice {
     private int activeFlag;
     private Date createdDate;
     private Date updatedDate;
-    private int supplierId;
-    private int customerId;
+    private Integer supplierId;
+    private Integer customerId;
 
     @OneToMany(fetch = FetchType.LAZY)
     private List<InvoiceItem> invoiceItems;
 
-    @OneToOne
-    @JoinColumn(name = "invoice_export_id")
-    private InvoiceExport invoiceExport;
-
-    @OneToOne
-    @JoinColumn(name = "invoice_import_id")
-    private InvoiceImport invoiceImport;
 
     public Invoice() {
     }
@@ -96,35 +90,19 @@ public class Invoice {
         this.invoiceItems = invoiceItems;
     }
 
-    public InvoiceExport getInvoiceExport() {
-        return invoiceExport;
-    }
-
-    public void setInvoiceExport(InvoiceExport invoiceExport) {
-        this.invoiceExport = invoiceExport;
-    }
-
-    public InvoiceImport getInvoiceImport() {
-        return invoiceImport;
-    }
-
-    public void setInvoiceImport(InvoiceImport invoiceImport) {
-        this.invoiceImport = invoiceImport;
-    }
-
-    public int getSupplierId() {
+    public Integer getSupplierId() {
         return supplierId;
     }
 
-    public void setSupplierId(int supplierId) {
+    public void setSupplierId(Integer supplierId) {
         this.supplierId = supplierId;
     }
 
-    public int getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 }

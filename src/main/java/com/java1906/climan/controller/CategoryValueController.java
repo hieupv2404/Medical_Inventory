@@ -2,157 +2,86 @@ package com.java1906.climan.controller;
 
 import com.java1906.climan.data.model.Category;
 import com.java1906.climan.data.model.CategoryValue;
-import com.java1906.climan.data.model.Paging;
 import com.java1906.climan.interceptor.HasRole;
 import com.java1906.climan.services.ICategoryService;
 import com.java1906.climan.services.ICategoryValueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-@RequestMapping("/categoryValue")
 @RestController
 public class CategoryValueController {
     @Autowired
-    private ICategoryValueService categoryValueService;
+    private ICategoryValueService categoryDetailService;
 
     @Autowired
-    private ICategoryService categoryService;
+    private ICategoryService   categoryService;
 
-    @RequestMapping(value= {"/list","/list/"})
-    public String redirect() {
-        return "redirect:/list/1";
-    }
-
-    //Get all categoryValue
-    @GetMapping("/list/{page}")
-    @HasRole({"STAFF", "ADMIN","DOCTOR"})
-    public String showCategoryValueList(Model model, @ModelAttribute("categoryValueListForm") CategoryValue categoryValue, @PathVariable("page") int page ){
-        Paging paging = new Paging(5);
-        paging.setIndexPage(page);
-        List<CategoryValue> categoryValues = categoryValueService.findAll();
-
-        model.addAttribute("paging",paging);
-        model.addAttribute("categoryValues",categoryValues);
-        return "categoryValue-list";
-    }
-//GET ById
-    @GetMapping("/{id}")
-    @HasRole({"STAFF", "ADMIN","DOCTOR"})
-    public String getCategoryValueById(Model model, @ModelAttribute("categoryValueListForm") CategoryValue categoryValue, @PathVariable("page") int page,@PathVariable("id") int id) {
-        Paging paging = new Paging(5);
-        paging.setIndexPage(page);
-        categoryValue = categoryValueService.findById(id).get();
-        model.addAttribute("paging",paging);
-        model.addAttribute("categoryValues",categoryValue);
-        return "categoryValue-list";
-
-    }
-
-    //add category value
-    @GetMapping("/category/{categoryId}/add")
+    //Get all category
+    @GetMapping("/categoryDetail")
+    @CrossOrigin(origins = "http://localhost:4200")
     @HasRole({"STAFF", "ADMIN"})
-    public String addCategoryValue(Model model, @PathVariable("categoryId") int categoryId)
-    {
-        model.addAttribute("tiltePage","Add Category Value");
-        model.addAttribute("modelForm",new CategoryValue());
-        model.addAttribute("viewOnly",false);
-
-         Category category = categoryService.findById(categoryId).get();
-        Map<String, String> mapCategory = new HashMap<>();
-        mapCategory.put(String.valueOf(category.getId()), category.getName());
-
-        model.addAttribute("mapCategory",mapCategory);
-        return "categoryValue-action";
-    }
-
-    // edit category value
-    @GetMapping("/edit/{id}")
-    public String editCategoryValue(Model model , @PathVariable("id") int id) {
-
-        CategoryValue categoryValue = categoryValueService.findById(id).get();
-        if(categoryValue!=null) {
-
-            List<Category> categories = categoryService.findAll();
-            Map<String, String> mapCategory = new HashMap<>();
-            for(Category category : categories) {
-                mapCategory.put(String.valueOf(category.getId()), category.getName());
-            }
-            categoryValue.setCategoryId(categoryValue.getCategory().getId());
-
-            model.addAttribute("mapCategory",mapCategory);
-            model.addAttribute("titlePage", "Edit Category Value");
-            model.addAttribute("modelForm", categoryValue);
-            model.addAttribute("viewOnly", false);
-            return "categoryValue-action";
+    public ResponseEntity<List<CategoryValue>> showCategoryList() {
+        List<CategoryValue> categoryDetailList = (List<CategoryValue>) categoryDetailService.findAll();
+        if (categoryDetailList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return "redirect:/list";
+        return new ResponseEntity<>(categoryDetailList, HttpStatus.OK);
     }
 
-    // view category value
-    @GetMapping("/view/{id}")
-    public String view(Model model , @PathVariable("id") int id) {
-
-        CategoryValue categoryValue = categoryValueService.findById(id).get();
-        if(categoryValue!=null) {
-            model.addAttribute("titlePage", "View Category Value");
-            model.addAttribute("modelForm", categoryValue);
-            model.addAttribute("viewOnly", true);
-            return "categoryValue-action";
-        }
-        return "redirect:/list";
-    }
-
-    // Create categoryValue value
-    @PostMapping("/categoryValue/{categoryId}/save")
+    //Get category by id
+    @GetMapping("/categoryDetail/{id}")
     @HasRole({"STAFF", "ADMIN"})
-    public String saveCategoryValue(Model model, @ModelAttribute("modelForm") CategoryValue categoryValue, BindingResult result, HttpSession session, @PathVariable("categoryId") int categoryId) {
-        if(result.hasErrors()) {
-            if(categoryValue.getId()!=null) {
-                model.addAttribute("titlePage", "Edit Category Value");
-            }else {
-                model.addAttribute("titlePage", "Add Category Value");
-            }
-            Category category = categoryService.findById(categoryId).get();
-            Map<String, String> mapCategory = new HashMap<>();
-            mapCategory.put(String.valueOf(category.getId()), category.getName());
+    public ResponseEntity<Object> getCategoryDetailById(@PathVariable("id") Integer id) {
+        System.out.println("Fetching category detail with id " + id);
+        CategoryValue categoryDetail = categoryDetailService.findById(id).get();
+        if (categoryDetail == null) {
+            return new ResponseEntity<Object>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Object>(categoryDetail, HttpStatus.OK);
+    }
 
-            model.addAttribute("mapCategory", mapCategory);
-            model.addAttribute("modelForm", categoryValue);
-            model.addAttribute("viewOnly", false);
-            return "categoryValue-action";
-
+    // Create category
+    @PostMapping("/categoryDetail")
+    @HasRole({"STAFF", "ADMIN"})
+    public ResponseEntity<String> createCategoryDetail(@RequestBody CategoryValue categoryDetail) {
+        if (categoryDetail == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        Category category = categoryService.findById(categoryId).get();
-        categoryValue.setCategory(category);
+        // lấy đc id của thg cha: category
+        // set id vừa lấy, vào category_id của categoryDetail.
 
-        categoryValueService.save(categoryValue);
-
-        return "redirect:/list";
+        categoryDetailService.save(categoryDetail);
+        return new ResponseEntity<>("created!", HttpStatus.CREATED);
     }
 
-    // Update category value
-//    @PutMapping("/{categoryValueId}")
-//    @HasRole({"STAFF", "ADMIN"})
-//    public ResponseEntity<CategoryValue> updateCategoryDetail(@PathVariable("categoryValueId") Integer categoryValueId,
-//                                                              @RequestBody CategoryValue categoryValue) {
-//        return new ResponseEntity<CategoryValue>(categoryValueService.update(categoryValueId,categoryValue), HttpStatus.OK);
-//    }
-
-    // Delete category value
-    @DeleteMapping("/{categoryValueId}")
+    // Update category detail
+    @PutMapping("/categoryDetail/{id}")
     @HasRole({"STAFF", "ADMIN"})
-    public ResponseEntity<String> deleteCategoryDetail(@PathVariable("categoryValueId") Integer categoryValueId) {
-        categoryValueService.delete(categoryValueId);
-        return new ResponseEntity<String>("Delete Ok",HttpStatus.OK);
+    public ResponseEntity<String> updateCategoryDetail(@PathVariable("id") Integer id,
+                                                       @RequestBody CategoryValue categoryDetail) {
+        System.out.println("Updating Category Detail " + id);
+        CategoryValue currentCategoryDetail = categoryDetailService.findById(id).get();
+        if (currentCategoryDetail == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        categoryDetailService.save(categoryDetail);
+        return new ResponseEntity<>("Updated!", HttpStatus.OK);
+    }
+
+    // Delete category detail
+    @DeleteMapping("/categoryDetail/{id}")
+    @HasRole({"STAFF", "ADMIN"})
+    public ResponseEntity<CategoryValue> deleteCategoryDetail(@PathVariable("id") Integer id) {
+        CategoryValue categoryDetail = categoryDetailService.findById(id).get();
+        if (categoryDetail == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        categoryDetailService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

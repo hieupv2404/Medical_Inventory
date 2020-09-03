@@ -22,7 +22,6 @@ public class InvoiceItemController {
 
     //Get all item
     @GetMapping("/invoice/{id}/invoiceItem")
-    @CrossOrigin(origins = "http://localhost:4200")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<List<InvoiceItem>> showInvoiceItemList(@PathVariable("id") int invoiceId) {
         return new ResponseEntity <List<InvoiceItem>>(invoiceItemService.findAllByInvoiceId(invoiceId), HttpStatus.OK);

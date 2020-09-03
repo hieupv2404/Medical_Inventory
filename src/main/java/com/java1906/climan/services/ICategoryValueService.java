@@ -10,11 +10,11 @@ public interface ICategoryValueService {
 
     List<CategoryValue> findAll();
     Optional<CategoryValue> findById(Integer categoryValueId);
-    void save(CategoryValue categoryValue);
-    void update(int categoryValueId, CategoryValue categoryValue);
+    CategoryValue save( int categoryId,CategoryValue categoryValue);
+    CategoryValue update(int categoryValueId, CategoryValue categoryValue);
     void delete(Integer categoryValueId);
     Optional<CategoryValue> findByCategory(Integer categoryId);
     List<CategoryValue> findAllByNameContatining(String name); // phần này tìm kiếm
 
-
+    void save(CategoryValue categoryValue);
 }

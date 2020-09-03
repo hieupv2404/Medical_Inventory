@@ -15,4 +15,6 @@ public interface ISupplierService {
     Supplier update(int supplierId , Supplier supplier) throws Exception;
 
     void delete(Integer supplierId);
+
+    Supplier findByName(String name);
 }

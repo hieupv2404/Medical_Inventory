@@ -4,10 +4,11 @@ package com.java1906.climan.services;
 import com.java1906.climan.data.model.CategoryValue;
 import com.java1906.climan.data.model.ProductInfo;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface IProducInfoService {
-    Iterable<ProductInfo> findAll();
+    List<ProductInfo> findAll();
 
     Optional<ProductInfo> findById(int id);
 

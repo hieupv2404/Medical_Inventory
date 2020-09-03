@@ -29,6 +29,14 @@ public class ProductInStock implements Serializable {
     private Date createdDate;
     private Date updatedDate;
 
+//    public ProductInStock(ProductInfo productInfo, int qty, Unit unit, double price) {
+//        this.productInfo = productInfo;
+//        this.qty = qty;
+//        this.unit = unit;
+//        this.price = price;
+//    }
+
+
     public ProductInStock() {
     }
 

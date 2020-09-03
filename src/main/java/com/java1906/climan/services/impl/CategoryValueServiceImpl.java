@@ -1,6 +1,7 @@
 package com.java1906.climan.services.impl;
 
 import com.java1906.climan.controller.ResourceNotFoundException;
+import com.java1906.climan.data.model.Category;
 import com.java1906.climan.data.model.CategoryValue;
 import com.java1906.climan.data.repo.CategoryRepository;
 import com.java1906.climan.data.repo.CategoryValueRepository;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,9 +21,6 @@ public class CategoryValueServiceImpl implements ICategoryValueService {
     private CategoryValueRepository categoryValueRepository;
     @Autowired
     private CategoryRepository categoryRepository;
-
-    @Autowired
-    private ICategoryValueService categoryValueService;
     @Override
     public List<CategoryValue> findAll() {
         return categoryValueRepository.findAll();
@@ -42,40 +39,31 @@ public class CategoryValueServiceImpl implements ICategoryValueService {
     }
 
     @Override
-    public void save(CategoryValue categoryValue) {
-        if (categoryValue.getId() != null || categoryValue.getId() != 0)
-        {
+    public CategoryValue save(int categoryId,CategoryValue categoryValue) {
+        List<CategoryValue> categoryValues = new ArrayList<>();
+        Category category1 = new Category();
+        Optional<Category> categoryById = categoryRepository.findById(categoryId);
+        if(!categoryById.isPresent()){
             try {
-
-                categoryValueService.update(categoryValue.getId(),categoryValue);
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-
-        }
-        else {
-            try {
-                List<CategoryValue> categoryValues = new ArrayList<>();
-
-                //save lai
-                categoryValue.setActiveFlag(1);
-                categoryValue.setCreateDate(new Date());
-                categoryValue.setUpdateDate(new Date());
-                categoryValue = categoryValueRepository.save(categoryValue);
-                //categoryValue chua category
-                categoryValues.add(categoryValue);
-                categoryValue.getCategory().setCategoryValue(categoryValues);
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
+                throw new ResourceNotFoundException("CategoryValue with id "+categoryId+ "does not exist");
+            } catch (ResourceNotFoundException e) {
                 e.printStackTrace();
             }
         }
-
+        //goi thang id category ra
+        Category category = categoryById.get();
+        //set vao category
+        categoryValue.setCategory(category);
+        //save lai
+        CategoryValue categoryValue1 =categoryValueRepository.save(categoryValue);
+        //categoryValue chua category
+        categoryValues.add(categoryValue1);
+        category1.setCategoryValue(categoryValues);
+        return categoryValue1;
     }
 
     @Override
-    public void update(int categoryValueId, CategoryValue categoryValueRequest) {
+    public CategoryValue update(int categoryValueId, CategoryValue categoryValueRequest) {
         if(!categoryValueRepository.existsById(categoryValueId)){
             try {
                 throw new ResourceNotFoundException("CategoryValue with id "+categoryValueId + "not found");
@@ -83,23 +71,23 @@ public class CategoryValueServiceImpl implements ICategoryValueService {
                 e.printStackTrace();
             }
         }
-        CategoryValue categoryValue =categoryValueRepository.findById(categoryValueId).get();
-        if(categoryValue.getId() == null || categoryValue.getId() ==0){
+        Optional<CategoryValue> categoryValue =categoryValueRepository.findById(categoryValueId);
+        if(!categoryValue.isPresent()){
             try {
-                throw new ResourceNotFoundException("CategoryValue with"+categoryValueId + " not found");
+                throw new ResourceNotFoundException("CategoryValue with"+categoryValueId + " not fount");
             } catch (ResourceNotFoundException e) {
                 e.printStackTrace();
             }
         }
-        CategoryValue categoryValue1 =categoryValue;
+        CategoryValue categoryValue1 =categoryValue.get();
         categoryValue1.setName(categoryValueRequest.getName());
         categoryValue1.setDescription(categoryValueRequest.getDescription());
         categoryValue1.setActiveFlag(categoryValueRequest.getActiveFlag());
         categoryValue1.setCategory(categoryValueRequest.getCategory());
-        categoryValue1.setUpdateDate(new Date());
+        categoryValue1.setUpdateDate(categoryValueRequest.getUpdateDate());
         categoryValue1.setCreateDate(categoryValue1.getCreateDate());
 
-        categoryValue= categoryValueRepository.save(categoryValue1);
+        return categoryValueRepository.save(categoryValue1);
     }
 
     @Override
@@ -123,5 +111,10 @@ public class CategoryValueServiceImpl implements ICategoryValueService {
     @Override
     public List<CategoryValue> findAllByNameContatining(String name) {
         return null;
+    }
+
+    @Override
+    public void save(CategoryValue categoryValue) {
+        categoryValueRepository.save(categoryValue);
     }
 }

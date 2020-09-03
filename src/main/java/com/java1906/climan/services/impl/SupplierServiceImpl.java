@@ -65,7 +65,7 @@ public class SupplierServiceImpl implements ISupplierService {
         supplier1.setSupplierAddress(supplier.getSupplierAddress());
         supplier1.setEmail(supplier.getNumberPhone());
         supplier1.setNumberPhone(supplier.getNumberPhone());
-        supplier1.setInvoiceImports(supplier.getInvoiceImports());
+
         return supplierRepository.save(supplier1);
     }
 
@@ -79,6 +79,11 @@ public class SupplierServiceImpl implements ISupplierService {
             }
         }
         supplierRepository.deleteById(supplierId);
+    }
+
+    @Override
+    public Supplier findByName(String name) {
+        return supplierRepository.findSupplierNativeQueryByName(name);
     }
 }
 

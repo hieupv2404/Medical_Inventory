@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ICategoryService {
-    List<Category> findAll();
+    List<Category> getAll();
 
     Optional<Category> findById(Integer id);
 
-    void save(Category category);
+    Category save(Category category);
 
-    void update(int categoryId , Category category) throws Exception;
+    Category update(int categoryId , Category category) throws Exception;
 
     void delete(Integer categoryId);
 

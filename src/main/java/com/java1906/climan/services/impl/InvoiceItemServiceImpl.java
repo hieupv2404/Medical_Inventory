@@ -3,11 +3,14 @@ package com.java1906.climan.services.impl;
 import com.java1906.climan.controller.ResourceNotFoundException;
 import com.java1906.climan.data.model.Invoice;
 import com.java1906.climan.data.model.InvoiceItem;
+import com.java1906.climan.data.model.ProductInStock;
 import com.java1906.climan.data.model.ProductInfo;
 import com.java1906.climan.data.repo.InvoiceItemRepository;
 import com.java1906.climan.data.repo.InvoiceRepository;
+import com.java1906.climan.data.repo.ProductInStockRepository;
 import com.java1906.climan.data.repo.ProductInfoRepository;
 import com.java1906.climan.services.IInvoiceItemService;
+import com.java1906.climan.services.ProductInStockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +30,12 @@ public class InvoiceItemServiceImpl implements IInvoiceItemService {
 
     @Autowired
     private ProductInfoRepository productInfoRepository;
+
+    @Autowired
+    private ProductInStockRepository productInStockRepository;
+
+    @Autowired
+    private ProductInStockService productInStockService;
 
 
     @Override
@@ -70,6 +79,10 @@ public class InvoiceItemServiceImpl implements IInvoiceItemService {
         InvoiceItem invoiceItem1 = invoiceItemRepository.save(invoiceItem);
         invoiceItems.add(invoiceItem1);
         invoice1.setInvoiceItems(invoiceItems);
+        invoice1.setInTotal(invoice1.getInTotal()+ invoiceItem1.getPriceInTotal());
+        invoice1.setOutTotal(invoice1.getOutTotal()+ invoiceItem1.getPriceOutTotal());
+//        productInStockRepository.save(new ProductInStock(productInfo, invoiceItem.getQty(), invoiceItem.getUnit(), invoiceItem.getPriceInTotal()));
+        productInStockService.saveOrUpdate(invoiceItem);
         return invoiceItem1;
     }
 

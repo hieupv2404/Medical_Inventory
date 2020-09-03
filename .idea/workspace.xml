@@ -11,16 +11,197 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19d92ab9-a0a1-4b64-9ebd-7bf0e50c2fbb" name="Default Changelist" comment="fix CategoryController">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_modelmapper_modelmapper_2_3_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/controller/InvoiceExportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/data/model/InvoiceCustomer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/data/model/InvoiceSupplier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/data/repo/CustomerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/data/repo/InvoiceCustomerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/data/repo/InvoiceSupplierRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/dto/CustomerDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/dto/InvoiceDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/dto/SupplierDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/ICustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/impl/CustomerServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/668daea0-b4f0-4db7-8f2c-9a9bfee6b0b9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/668daea0-b4f0-4db7-8f2c-9a9bfee6b0b9.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/inventory/.vs/inventory/config/applicationhost.config" beforeDir="false" afterPath="$PROJECT_DIR$/client/inventory/.vs/inventory/config/applicationhost.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/inventory/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/.vs/ProjectSettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/.vs/VSWorkspaceState.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/.vs/inventory/config/applicationhost.config" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/.vs/inventory/v16/.suo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/.vs/slnx.sqlite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/angular.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/browserslist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/debug.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/e2e/protractor.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/e2e/src/app.e2e-spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/e2e/src/app.po.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/e2e/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/karma.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/_guards/auth.guard.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/_guards/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/_models/category.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/_models/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/_models/product.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/_models/role.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/_models/user.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/_services/authentication.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/_services/category.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/_services/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/_services/product.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/app.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/app.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/app.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/app.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/app.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/app.routes.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/category/category.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/category/category.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/category/category.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/category/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/filter/filter.pipe.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/homeadmin/homeadmin.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/homeadmin/homeadmin.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/homeadmin/homeadmin.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/homeadmin/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/homeuser/homeuser.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/homeuser/homeuser.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/homeuser/homeuser.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/homeuser/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/login/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/login/login.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/login/login.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/login/login.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/product/create-product/create-product.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/product/create-product/create-product.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/product/create-product/create-product.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/product/create-product/create-product.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/product/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/product/product.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/product/product.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/product/product.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/product/product.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/product/update-product/update-product.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/product/update-product/update-product.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/product/update-product/update-product.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/product/update-product/update-product.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/product/view-product/view-product.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/product/view-product/view-product.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/product/view-product/view-product.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/app/product/view-product/view-product.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/assets/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/environments/environment.prod.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/environments/environment.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/polyfills.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/src/test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/tsconfig.spec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/inventory/tslint.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-interceptor.iml" beforeDir="false" afterPath="$PROJECT_DIR$/demo-interceptor.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/ClinicManagementApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/ClinicManagementApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/controller/CategoryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/controller/CategoryValueController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/controller/CategoryValueController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/data/model/CategoryValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/data/model/CategoryValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/controller/InvoiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/controller/InvoiceImportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/controller/InvoiceItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/controller/InvoiceItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/controller/ProductInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/controller/ProductInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/data/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/data/model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/data/model/Invoice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/data/model/Invoice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/data/model/ProductInStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/data/model/ProductInStock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/data/model/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/data/model/Supplier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/data/repo/InvoiceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/data/repo/InvoiceRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/data/repo/SupplierRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/data/repo/SupplierRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/ICategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/ICategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/ICategoryValueService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/ICategoryValueService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/IInvoiceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/IInvoiceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/IProducInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/IProducInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/ISupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/ISupplierService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/impl/CategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/impl/CategoryServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/impl/CategoryValueServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/impl/CategoryValueServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/impl/InvoiceItemServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/impl/InvoiceItemServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/impl/InvoiceServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/impl/InvoiceServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/impl/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/impl/ProductInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/impl/SupplierServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/impl/SupplierServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/java1906/climan/ClinicManagementApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/java1906/climan/ClinicManagementApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/ClinicManagementApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/ClinicManagementApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/config/MvcConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/config/MvcConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/controller/CategoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/controller/CategoryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/controller/CategoryValueController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/controller/CategoryValueController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/controller/InvoiceController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/controller/InvoiceItemController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/controller/InvoiceItemController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/controller/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/controller/ProductInStockController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/controller/ProductInStockController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/controller/ProductInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/controller/ProductInfoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/controller/ResourceNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/controller/ResourceNotFoundException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/controller/SupplierController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/controller/SupplierController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/Category.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/CategoryValue.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/CategoryValue.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/Customer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/Invoice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/Invoice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/InvoiceExport.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/InvoiceExport.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/InvoiceImport.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/InvoiceImport.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/InvoiceItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/InvoiceItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/ProductInStock.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/ProductInStock.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/ProductInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/ProductInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/RoleType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/RoleType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/Supplier.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/Supplier.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/Unit.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/Unit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/UserInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/model/UserInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/repo/CategoryRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/repo/CategoryRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/repo/CategoryValueRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/repo/CategoryValueRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/repo/InvoiceExportRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/repo/InvoiceExportRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/repo/InvoiceImportRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/repo/InvoiceImportRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/repo/InvoiceItemRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/repo/InvoiceItemRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/repo/InvoiceRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/repo/InvoiceRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/repo/ProductInStockRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/repo/ProductInStockRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/repo/ProductInfoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/repo/ProductInfoRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/repo/SupplierRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/repo/SupplierRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/repo/UserInfoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/repo/UserInfoRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/repo/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/data/repo/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/dto/AuthenticationRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/dto/AuthenticationRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/dto/Credential.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/dto/Credential.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/exception/LogicException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/exception/LogicException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/exception/RestResponseStatusExceptionResolver.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/exception/RestResponseStatusExceptionResolver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/interceptor/AuthenticationAndLoggingInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/interceptor/AuthenticationAndLoggingInterceptor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/interceptor/HasRole.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/interceptor/HasRole.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/resources/ResourcesConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/resources/ResourcesConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/ICategoryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/ICategoryService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/ICategoryValueService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/ICategoryValueService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/IInvoiceImportService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/IInvoiceImportService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/IInvoiceItemService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/IInvoiceItemService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/IInvoiceService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/IInvoiceService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/IProducInfoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/IProducInfoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/ISupplierService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/ISupplierService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/IUserInfoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/IUserInfoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/IUserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/IUserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/ProductInStockService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/ProductInStockService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/impl/CategoryServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/impl/CategoryServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/impl/CategoryValueServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/impl/CategoryValueServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/impl/InvoiceImportServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/impl/InvoiceImportServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/impl/InvoiceItemServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/impl/InvoiceItemServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/impl/InvoiceServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/impl/InvoiceServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/impl/ProductInStockServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/impl/ProductInStockServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/impl/ProductServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/impl/SupplierServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/impl/SupplierServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/impl/UserInfoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/impl/UserInfoServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/services/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/utils/PasswordUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/utils/PasswordUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/java1906/climan/utils/TokenManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/java1906/climan/utils/TokenManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/java1906/climan/ClinicManagementApplicationTests.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +212,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -59,11 +241,12 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/templates" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.30338734" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -71,14 +254,21 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.java1906.climan.data.model" />
       <recent name="com.java1906.climan.controller" />
-      <recent name="com.java1906.climan.config" />
+      <recent name="com.java1906.climan.data.model" />
+      <recent name="com.java1906.climan.data.repo" />
+      <recent name="com.java1906.climan.services.impl" />
+      <recent name="com.java1906.climan.services" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Do An\T3H\Inventory_Medical\src\main\resources\templates" />
       <recent name="E:\Do An\T3H\Inventory_Medical\target\classes\templates" />
     </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean install" />
+    </option>
   </component>
   <component name="RunManager" selected="Spring Boot.ClinicManagementApplication">
     <configuration name="ClinicManagementApplicationTests.setupUsers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -105,9 +295,6 @@
       <scope-kind value="ALL" />
       <method v="2" />
     </configuration>
-    <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
-      <method v="2" />
-    </configuration>
     <configuration name="ClinicManagementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="demo-interceptor" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.java1906.climan.ClinicManagementApplication" />
@@ -115,16 +302,15 @@
       <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <envs>
-        <env name="PASSWORD" value="ult.zda1" />
-        <env name="LOCALHOST" value="localhost:3306" />
-        <env name="USERNAME" value="root" />
+        <env name="MYSQL_PASSWORD" value="ult.zda1" />
+        <env name="MYSQL_LOCALHOST" value="localhost:3306" />
+        <env name="MYSQL_USERNAME" value="root" />
       </envs>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JavaScript Debug.Angular Application" />
       <item itemvalue="JUnit.ClinicManagementApplicationTests.setupUsers" />
       <item itemvalue="Protractor.E2E Tests (inventory)" />
       <item itemvalue="Spring Boot.ClinicManagementApplication" />
@@ -156,7 +342,17 @@
       <workItem from="1597255728118" duration="652000" />
       <workItem from="1597647240706" duration="13775000" />
       <workItem from="1597734362538" duration="4985000" />
-      <workItem from="1597739483113" duration="9510000" />
+      <workItem from="1597739483113" duration="9629000" />
+      <workItem from="1597819922189" duration="5002000" />
+      <workItem from="1597827722625" duration="7345000" />
+      <workItem from="1598168302393" duration="1229000" />
+      <workItem from="1598257717501" duration="1619000" />
+      <workItem from="1598340310604" duration="2303000" />
+      <workItem from="1598343760312" duration="6334000" />
+      <workItem from="1598428661854" duration="3145000" />
+      <workItem from="1598545846257" duration="649000" />
+      <workItem from="1598858153839" duration="12900000" />
+      <workItem from="1599117932475" duration="12254000" />
     </task>
     <task id="LOCAL-00001" summary="fix CategoryController">
       <created>1597662951380</created>
@@ -165,7 +361,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597662951380</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fix CategoryController">
+      <created>1597749276626</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1597749276626</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -192,30 +395,46 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="395" y="95" key="#Inspections/0.0.1536.834@0.0.1536.834" timestamp="1595005676073" />
+    <state x="654" y="280" key="#Notifications" timestamp="1597820010735">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="654" y="280" key="#Notifications/0.0.1536.834@0.0.1536.834" timestamp="1597820010735" />
     <state x="249" y="0" key="#Project_Structure" timestamp="1594975915543">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="249" y="0" key="#Project_Structure/0.0.1536.834@0.0.1536.834" timestamp="1594975915543" />
-    <state x="150" y="86" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597744582682">
+    <state x="206" y="258" key="#SQL_Dialects" timestamp="1599122946974">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="150" y="86" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1597744582682" />
-    <state x="574" y="123" key="#com.intellij.ide.util.MemberChooser" timestamp="1597735496093">
+    <state x="206" y="258" key="#SQL_Dialects/0.0.1536.834@0.0.1536.834" timestamp="1599122946974" />
+    <state x="150" y="86" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599130189098">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="574" y="123" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1597735496093" />
+    <state x="150" y="86" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1599130189098" />
+    <state x="574" y="123" key="#com.intellij.ide.util.MemberChooser" timestamp="1599125834822">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="574" y="123" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1599125834822" />
     <state x="568" y="324" key="#com.intellij.javaee.module.view.web.EditWebRootDialog" timestamp="1594976094748">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="568" y="324" key="#com.intellij.javaee.module.view.web.EditWebRootDialog/0.0.1536.834@0.0.1536.834" timestamp="1594976094748" />
+    <state x="551" y="286" width="433" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1599123156213">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="551" y="286" width="433" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.834@0.0.1536.834" timestamp="1599123156213" />
+    <state x="551" y="287" key="#com.intellij.refactoring.move.moveInstanceMethod.MoveInstanceMethodDialog" timestamp="1597821260091">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="551" y="287" key="#com.intellij.refactoring.move.moveInstanceMethod.MoveInstanceMethodDialog/0.0.1536.834@0.0.1536.834" timestamp="1597821260091" />
     <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1597651868005">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.834@0.0.1536.834" timestamp="1597651868005" />
-    <state x="720" y="158" key="#xdebugger.evaluate" timestamp="1597749135007">
+    <state x="679" y="96" key="#xdebugger.evaluate" timestamp="1599120710537">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="720" y="158" key="#xdebugger.evaluate/0.0.1536.834@0.0.1536.834" timestamp="1597749135007" />
+    <state x="679" y="96" key="#xdebugger.evaluate/0.0.1536.834@0.0.1536.834" timestamp="1599120710537" />
     <state x="93" y="93" width="1350" height="648" key="DiffContextDialog" timestamp="1597736924206">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -228,78 +447,78 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="824" y="157" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1595736506107" />
-    <state width="1493" height="144" key="GridCell.Tab.0.bottom" timestamp="1597749081943">
+    <state width="1493" height="252" key="GridCell.Tab.0.bottom" timestamp="1599130160064">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="144" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1597749081943" />
+    <state width="1493" height="252" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1599130160064" />
     <state width="1033" height="423" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1594981013513" />
-    <state width="1493" height="144" key="GridCell.Tab.0.center" timestamp="1597749081943">
+    <state width="1493" height="252" key="GridCell.Tab.0.center" timestamp="1599130160063">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="144" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1597749081943" />
+    <state width="1493" height="252" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1599130160063" />
     <state width="1033" height="423" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1594981013513" />
-    <state width="1493" height="144" key="GridCell.Tab.0.left" timestamp="1597749081942">
+    <state width="1493" height="252" key="GridCell.Tab.0.left" timestamp="1599130160063">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="144" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1597749081942" />
+    <state width="1493" height="252" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1599130160063" />
     <state width="1033" height="423" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1594981013513" />
-    <state width="1493" height="144" key="GridCell.Tab.0.right" timestamp="1597749081943">
+    <state width="1493" height="252" key="GridCell.Tab.0.right" timestamp="1599130160064">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="144" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1597749081943" />
+    <state width="1493" height="252" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1599130160064" />
     <state width="1033" height="423" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1594981013513" />
-    <state width="1493" height="144" key="GridCell.Tab.1.bottom" timestamp="1597749125145">
+    <state width="1493" height="252" key="GridCell.Tab.1.bottom" timestamp="1599130159889">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="144" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1597749125145" />
+    <state width="1493" height="252" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1599130159889" />
     <state width="1033" height="423" key="GridCell.Tab.1.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1594981013342" />
-    <state width="1493" height="144" key="GridCell.Tab.1.center" timestamp="1597749125145">
+    <state width="1493" height="252" key="GridCell.Tab.1.center" timestamp="1599130159889">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="144" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1597749125145" />
+    <state width="1493" height="252" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1599130159889" />
     <state width="1033" height="423" key="GridCell.Tab.1.center/0.0.1920.1050@0.0.1920.1050" timestamp="1594981013342" />
-    <state width="1493" height="144" key="GridCell.Tab.1.left" timestamp="1597749125145">
+    <state width="1493" height="252" key="GridCell.Tab.1.left" timestamp="1599130159889">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="144" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1597749125145" />
+    <state width="1493" height="252" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1599130159889" />
     <state width="1033" height="423" key="GridCell.Tab.1.left/0.0.1920.1050@0.0.1920.1050" timestamp="1594981013342" />
-    <state width="1493" height="144" key="GridCell.Tab.1.right" timestamp="1597749125145">
+    <state width="1493" height="252" key="GridCell.Tab.1.right" timestamp="1599130159889">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="144" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1597749125145" />
+    <state width="1493" height="252" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1599130159889" />
     <state width="1033" height="423" key="GridCell.Tab.1.right/0.0.1920.1050@0.0.1920.1050" timestamp="1594981013342" />
-    <state width="1493" height="144" key="GridCell.Tab.2.bottom" timestamp="1597749081774">
+    <state width="1493" height="252" key="GridCell.Tab.2.bottom" timestamp="1599130159889">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="144" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1597749081774" />
+    <state width="1493" height="252" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1599130159889" />
     <state width="1033" height="423" key="GridCell.Tab.2.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1594981013343" />
-    <state width="1493" height="144" key="GridCell.Tab.2.center" timestamp="1597749081774">
+    <state width="1493" height="252" key="GridCell.Tab.2.center" timestamp="1599130159889">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="144" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1597749081774" />
+    <state width="1493" height="252" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1599130159889" />
     <state width="1033" height="423" key="GridCell.Tab.2.center/0.0.1920.1050@0.0.1920.1050" timestamp="1594981013342" />
-    <state width="1493" height="144" key="GridCell.Tab.2.left" timestamp="1597749081774">
+    <state width="1493" height="252" key="GridCell.Tab.2.left" timestamp="1599130159889">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="144" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1597749081774" />
+    <state width="1493" height="252" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1599130159889" />
     <state width="1033" height="423" key="GridCell.Tab.2.left/0.0.1920.1050@0.0.1920.1050" timestamp="1594981013342" />
-    <state width="1493" height="144" key="GridCell.Tab.2.right" timestamp="1597749081774">
+    <state width="1493" height="252" key="GridCell.Tab.2.right" timestamp="1599130159889">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="144" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1597749081774" />
+    <state width="1493" height="252" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1599130159889" />
     <state width="1033" height="423" key="GridCell.Tab.2.right/0.0.1920.1050@0.0.1920.1050" timestamp="1594981013342" />
-    <state x="399" y="0" width="1080" height="834" key="SettingsEditor" timestamp="1595736536174">
+    <state x="399" y="0" width="1080" height="834" key="SettingsEditor" timestamp="1598344726976">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="399" y="0" width="1080" height="834" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1595736536174" />
-    <state x="361" y="137" key="Vcs.Push.Dialog.v2" timestamp="1597662952934">
+    <state x="399" y="0" width="1080" height="834" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1598344726976" />
+    <state x="361" y="137" key="Vcs.Push.Dialog.v2" timestamp="1597749278403">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="137" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1597662952934" />
-    <state width="775" height="424" key="XDebugger.FullValuePopup" timestamp="1595229317730">
+    <state x="361" y="137" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1597749278403" />
+    <state width="775" height="424" key="XDebugger.FullValuePopup" timestamp="1599120255475">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="775" height="424" key="XDebugger.FullValuePopup/0.0.1536.834@0.0.1536.834" timestamp="1595229317730" />
+    <state width="775" height="424" key="XDebugger.FullValuePopup/0.0.1536.834@0.0.1536.834" timestamp="1599120255475" />
     <state x="499" y="222" key="com.intellij.database.dbimport.ImportUtil.ChooseTargetDialog" timestamp="1597749030931">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -308,6 +527,14 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="566" y="234" width="403" height="361" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog/0.0.1536.834@0.0.1536.834" timestamp="1597747990556" />
+    <state x="628" y="113" width="576" height="563" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1598869945051">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="628" y="113" width="576" height="563" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1536.834@0.0.1536.834" timestamp="1598869945051" />
+    <state x="578" y="331" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597821276970">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="578" y="331" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834@0.0.1536.834" timestamp="1597821276970" />
     <state x="322" y="146" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1594983838387">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -316,25 +543,14 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="478" y="16" width="579" height="801" key="find.popup/0.0.1536.834@0.0.1536.834" timestamp="1595232946545" />
-    <state x="425" y="189" key="run.anything.popup" timestamp="1595241415400">
+    <state x="425" y="189" width="672" height="677" key="run.anything.popup" timestamp="1598351513733">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1595241415400" />
-    <state x="425" y="71" width="672" height="676" key="search.everywhere.popup" timestamp="1597659467505">
+    <state x="425" y="189" width="672" height="677" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1598351513733" />
+    <state x="425" y="71" width="672" height="676" key="search.everywhere.popup" timestamp="1598345432143">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="425" y="71" width="672" height="676" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1597659467505" />
+    <state x="425" y="71" width="672" height="676" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1598345432143" />
     <state x="531" y="89" width="838" height="852" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1594979494059" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/java1906/climan/controller/CategoryController.java</url>
-          <line>95</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

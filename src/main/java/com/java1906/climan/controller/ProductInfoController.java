@@ -60,7 +60,7 @@ class ProductInfoController {
     @PutMapping("/productInfo/{productInfoId}")
     @HasRole({"STAFF", "ADMIN", "DOCTOR"})
     public ResponseEntity<ProductInfo> updateProduct(@PathVariable("productInfoId") int productInfoId,
-            @RequestBody ProductInfo productInfo) {
+                                                     @RequestBody ProductInfo productInfo) {
         List<CategoryValue> newCategoryValue = new ArrayList<>();
         if(productInfo.getCategoryValues() != null){
             for(CategoryValue categoryValue : productInfo.getCategoryValues()){
