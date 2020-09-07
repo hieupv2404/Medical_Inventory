@@ -31,7 +31,7 @@ public class ProductInStockServiceImpl implements ProductInStockService {
     private ProductInfoRepository productInfoRepository;
 
     @Override
-    public List<ProductInStock> getAll() {
+    public List<ProductInStock> findAll() {
         return productInStockRepository.findAll();
     }
 
@@ -41,32 +41,33 @@ public class ProductInStockServiceImpl implements ProductInStockService {
         {
             int productId = invoiceItem.getProductInfo().getId();
             List<ProductInStock> productInStocks = productInStockRepository.findAll();
-            for(ProductInStock productInStock : productInStocks) {
-                if (productInStock.getProductInfo().getId() == productId) {
-                    if (invoiceItem.getInvoice().getType() == 1) {
-                        productInStock.setQty(productInStock.getQty() + invoiceItem.getQty());
-                        productInStock.setPrice(invoiceItem.getPriceInTotal());
-                    } else if (invoiceItem.getInvoice().getType() == 2) {
-                        productInStock.setQty(productInStock.getQty() - invoiceItem.getQty());
-                        productInStock.setPrice(invoiceItem.getPriceOutTotal());
+            int checkExists = 0;
+            for (ProductInStock productInStock : productInStocks) {
+                    if (productInStock.getProductInfo().getId() == productId) {
+                        checkExists = 1;
+                        if (invoiceItem.getInvoice().getType() == 1) {
+                            productInStock.setQty(productInStock.getQty() + invoiceItem.getQty());
+                            productInStock.setPrice(invoiceItem.getPriceIn());
+                        } else if (invoiceItem.getInvoice().getType() == 2) {
+                            productInStock.setQty(productInStock.getQty() - invoiceItem.getQty());
+                        }
+                        productInStock.setUpdatedDate(new Date());
+                        productInStockRepository.save(productInStock);
                     }
-
+            }
+            if (checkExists == 0) {
+                if (invoiceItem.getInvoice().getType() == 1) {
+                    ProductInStock productInStock = new ProductInStock();
+                    productInStock.setProductInfo(invoiceItem.getProductInfo());
+                    productInStock.setQty(invoiceItem.getQty());
+                    productInStock.setUnit(invoiceItem.getUnit());
+                    productInStock.setPrice(invoiceItem.getPriceIn());
+                    productInStock.setActiveFlag(1);
+                    productInStock.setCreatedDate(new Date());
+                    productInStock.setUpdatedDate(new Date());
+                    productInStockRepository.save(productInStock);
                 }
             }
-            if (invoiceItem.getInvoice().getType()==1)
-            {
-                ProductInStock productInStock = new ProductInStock();
-                productInStock.setProductInfo(invoiceItem.getProductInfo());
-                productInStock.setQty(invoiceItem.getQty());
-                productInStock.setUnit(invoiceItem.getUnit());
-                productInStock.setPrice(invoiceItem.getPriceInTotal());
-                productInStock.setActiveFlag(1);
-                productInStock.setCreatedDate(new Date());
-                productInStock.setUpdatedDate(new Date());
-                productInStockRepository.saveAndFlush(productInStock);
-            }
-
-
         }
     }
 

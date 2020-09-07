@@ -17,6 +17,6 @@ public class ProductInStockController {
     @GetMapping("/product-in-stock/list")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<Object> getProductInStock() {
-        return new ResponseEntity<>(productInStockService.getAll(), HttpStatus.OK);
+        return new ResponseEntity<>(productInStockService.findAll(), HttpStatus.OK);
     }
 }

@@ -2,7 +2,6 @@ package com.java1906.climan.data.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
 @Table
@@ -10,7 +9,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
-    private int customerId;
+    private int id;
     private String name;
     private String address;
     private String numberPhone;
@@ -22,13 +21,13 @@ public class Customer {
     public Customer() {
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public int getId() {
+        return id;
     }
 
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setId(int customerId) {
+        this.id = customerId;
     }
 
     public String getName() {

@@ -1,7 +1,6 @@
 package com.java1906.climan.services.impl;
 
 import com.java1906.climan.controller.ResourceNotFoundException;
-import com.java1906.climan.data.model.Category;
 import com.java1906.climan.data.model.Supplier;
 import com.java1906.climan.data.repo.SupplierRepository;
 import com.java1906.climan.services.ISupplierService;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,8 +59,8 @@ public class SupplierServiceImpl implements ISupplierService {
             }
         }
         Supplier supplier1 = supplierRepositoryById.get();
-        supplier1.setSupplierName(supplier.getSupplierName());
-        supplier1.setSupplierAddress(supplier.getSupplierAddress());
+        supplier1.setName(supplier.getName());
+        supplier1.setAddress(supplier.getAddress());
         supplier1.setEmail(supplier.getNumberPhone());
         supplier1.setNumberPhone(supplier.getNumberPhone());
 

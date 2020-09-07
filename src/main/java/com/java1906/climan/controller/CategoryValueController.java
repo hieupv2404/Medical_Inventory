@@ -22,7 +22,6 @@ public class CategoryValueController {
 
     //Get all category
     @GetMapping("/categoryDetail")
-    @CrossOrigin(origins = "http://localhost:4200")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<List<CategoryValue>> showCategoryList() {
         List<CategoryValue> categoryDetailList = (List<CategoryValue>) categoryDetailService.findAll();

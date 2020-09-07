@@ -3,7 +3,6 @@ package com.java1906.climan.data.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Table
@@ -11,9 +10,9 @@ public class Supplier implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
-    private Integer supplierId;
-    private String supplierName;
-    private String supplierAddress;
+    private Integer id;
+    private String name;
+    private String address;
     private String numberPhone;
     private String email;
 
@@ -23,30 +22,30 @@ public class Supplier implements Serializable {
     public Supplier() {
     }
 
-    public int getSupplierId() {
-        return supplierId;
+    public int getId() {
+        return id;
     }
 
-    public void setSupplierId(Integer supplierId) {
-        this.supplierId = supplierId;
+    public void setId(Integer supplierId) {
+        this.id = supplierId;
     }
 
-    public String getSupplierName() {
-        return supplierName;
+    public String getName() {
+        return name;
     }
 
-    public void setSupplierName(String supplierName) {
-        this.supplierName = supplierName;
+    public void setName(String supplierName) {
+        this.name = supplierName;
     }
 
 
 
-    public String getSupplierAddress() {
-        return supplierAddress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setSupplierAddress(String supplierAddress) {
-        this.supplierAddress = supplierAddress;
+    public void setAddress(String supplierAddress) {
+        this.address = supplierAddress;
     }
 
     public String getNumberPhone() {

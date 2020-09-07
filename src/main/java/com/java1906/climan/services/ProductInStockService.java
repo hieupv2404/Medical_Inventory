@@ -7,7 +7,7 @@ import com.java1906.climan.data.model.ProductInStock;
 import java.util.List;
 
 public interface ProductInStockService {
-    List<ProductInStock> getAll();
+    List<ProductInStock> findAll();
 
     void saveOrUpdate(InvoiceItem invoiceItem);
 }
