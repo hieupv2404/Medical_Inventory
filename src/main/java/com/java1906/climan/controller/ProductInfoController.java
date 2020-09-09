@@ -2,14 +2,17 @@ package com.java1906.climan.controller;
 
 import com.java1906.climan.data.model.CategoryValue;
 import com.java1906.climan.data.model.ProductInfo;
+import com.java1906.climan.data.model.ProductInfoCategoryValue;
 import com.java1906.climan.data.repo.CategoryValueRepository;
 import com.java1906.climan.interceptor.HasRole;
 import com.java1906.climan.services.ICategoryValueService;
 import com.java1906.climan.services.IProducInfoService;
+import com.java1906.climan.services.IProductInfoCategoryValueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,32 +31,44 @@ class ProductInfoController {
     @Autowired
     private ICategoryValueService categoryValueService;
 
+    @Autowired
+    private IProductInfoCategoryValueService productInfoCategoryValueService;
     //Get all product
     @GetMapping("/productInfo")
     @HasRole({"STAFF", "ADMIN", "DOCTOR"})
-    public ResponseEntity<Iterable<ProductInfo>> showProductList() {
+    public ResponseEntity<Iterable<ProductInfo>> showProductList(Model model) {
         Iterable<ProductInfo> productList = productInfoService.findAll();
+        model.addAttribute("productList",productList);
         return new ResponseEntity<>(productList, HttpStatus.OK);
+    }
+
+    //Get all product by id
+    @GetMapping("/productInfo/{productId}")
+    @HasRole({"STAFF", "ADMIN", "DOCTOR"})
+    public ResponseEntity<Iterable<ProductInfo>> showProductById(Model model, @PathVariable("productId") Integer productId) {
+        ProductInfo productInfo = productInfoService.findById(productId).get();
+        if (productInfo == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        model.addAttribute("productInfo",productInfo);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     // Create product
     @PostMapping("/productInfo")
     @HasRole({"STAFF", "ADMIN", "DOCTOR"})
     public ResponseEntity<ProductInfo> createProduct(@RequestBody ProductInfo productInfo) {
-        // Sửa lý liên kêt n-n
-        List<CategoryValue> newCategoryValue = new ArrayList<>();
+        // Xu lý liên kêt n-n
+//        List<CategoryValue> newCategoryValue = new ArrayList<>();
         if(productInfo.getCategoryValues() !=null){
             for(CategoryValue categoryValue : productInfo.getCategoryValues()){
-                categoryValueService.save(categoryValue);
-                newCategoryValue.add(categoryValue);
+                ProductInfoCategoryValue productInfoCategoryValue = new ProductInfoCategoryValue();
+                productInfoCategoryValue.setProductInfoId(productInfo.getId());
+                productInfoCategoryValue.setCategoryValueId(categoryValue.getId());
+                productInfoCategoryValueService.save(productInfoCategoryValue);
             }
         }
-        productInfo.setCategoryValues(newCategoryValue);
-        ProductInfo productInfo1 = new ProductInfo(productInfo.getName(),productInfo.getDescription(),
-                productInfo.getImg_url(),productInfo.getActiveFlag(),productInfo.getCreateDate(),
-                productInfo.getUpdateDate(),productInfo.getCategoryValues());
-
-        return new ResponseEntity<ProductInfo>(productInfoService.save(productInfo1),HttpStatus.CREATED);
+        return new ResponseEntity<ProductInfo>(productInfoService.save(productInfo),HttpStatus.CREATED);
     }
 
     // Update product
@@ -61,17 +76,22 @@ class ProductInfoController {
     @HasRole({"STAFF", "ADMIN", "DOCTOR"})
     public ResponseEntity<ProductInfo> updateProduct(@PathVariable("productInfoId") int productInfoId,
                                                      @RequestBody ProductInfo productInfo) {
-        List<CategoryValue> newCategoryValue = new ArrayList<>();
-        if(productInfo.getCategoryValues() != null){
-            for(CategoryValue categoryValue : productInfo.getCategoryValues()){
-                categoryValueService.save(categoryValue);
-                newCategoryValue.add(categoryValue);
-            }
-        }
-        productInfo.setCategoryValues(newCategoryValue);
         Optional<ProductInfo> productInfoMaster =productInfoService.findById(productInfoId);
         if(!productInfoMaster.isPresent()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        List<CategoryValue> categoryValueListProductInfoMaster = productInfoMaster.get().getCategoryValues();
+        if(productInfo.getCategoryValues() != null) {
+            for (CategoryValue categoryValue : productInfo.getCategoryValues()) {
+                for (CategoryValue categoryValueMaster : categoryValueListProductInfoMaster) {
+                    if (categoryValue.getCategory().getId() == categoryValueMaster.getCategory().getId()
+                            && categoryValue.getId() != categoryValueMaster.getId()) {
+                        ProductInfoCategoryValue productInfoCategoryValue = productInfoCategoryValueService.findByProductIdAndCategoryValueId(productInfoId, categoryValueMaster.getId());
+                        productInfoCategoryValue.setCategoryValueId(categoryValue.getId());
+                        break;
+                    }
+                }
+            }
         }
         productInfoMaster.get().setName(productInfo.getName());
         productInfoMaster.get().setDescription(productInfo.getDescription());
@@ -79,7 +99,6 @@ class ProductInfoController {
         productInfoMaster.get().setImg_url(productInfo.getImg_url());
         productInfoMaster.get().setCategoryValues(productInfo.getCategoryValues());
         productInfoMaster.get().setUpdateDate(productInfo.getUpdateDate());
-
         return new ResponseEntity<>(productInfoService.save(productInfoMaster.get()), HttpStatus.CREATED);
     }
 

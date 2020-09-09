@@ -8,6 +8,7 @@ import com.java1906.climan.services.ICategoryValueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,72 +16,71 @@ import java.util.List;
 @RestController
 public class CategoryValueController {
     @Autowired
-    private ICategoryValueService categoryDetailService;
+    private ICategoryValueService categoryValueService;
 
     @Autowired
     private ICategoryService   categoryService;
 
     //Get all category
-    @GetMapping("/categoryDetail")
+    @GetMapping("/categoryValue")
     @HasRole({"STAFF", "ADMIN"})
-    public ResponseEntity<List<CategoryValue>> showCategoryList() {
-        List<CategoryValue> categoryDetailList = (List<CategoryValue>) categoryDetailService.findAll();
-        if (categoryDetailList.isEmpty()) {
+    public ResponseEntity<List<CategoryValue>> showCategoryList(Model model) {
+        List<CategoryValue> categoryValueList = (List<CategoryValue>) categoryValueService.findAll();
+        if (categoryValueList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(categoryDetailList, HttpStatus.OK);
+        model.addAttribute("titlePage","Category Value List");
+        model.addAttribute("categoryValueList",categoryValueList);
+        return new ResponseEntity<>(categoryValueList, HttpStatus.OK);
     }
 
     //Get category by id
-    @GetMapping("/categoryDetail/{id}")
+    @GetMapping("/categoryValue/{id}")
     @HasRole({"STAFF", "ADMIN"})
-    public ResponseEntity<Object> getCategoryDetailById(@PathVariable("id") Integer id) {
+    public ResponseEntity<Object> getCategoryDetailById(Model model,@PathVariable("id") Integer id) {
         System.out.println("Fetching category detail with id " + id);
-        CategoryValue categoryDetail = categoryDetailService.findById(id).get();
-        if (categoryDetail == null) {
+        CategoryValue categoryValue = categoryValueService.findById(id).get();
+        if (categoryValue == null) {
             return new ResponseEntity<Object>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<Object>(categoryDetail, HttpStatus.OK);
+        model.addAttribute("titlePage","Category Value List");
+        model.addAttribute("categoryValue",categoryValue);
+        return new ResponseEntity<Object>(categoryValue, HttpStatus.OK);
     }
 
     // Create category
-    @PostMapping("/categoryDetail")
+    @PostMapping("/categoryValue")
     @HasRole({"STAFF", "ADMIN"})
-    public ResponseEntity<String> createCategoryDetail(@RequestBody CategoryValue categoryDetail) {
-        if (categoryDetail == null) {
+    public ResponseEntity<String> createCategoryDetail(@RequestBody CategoryValue categoryValue) {
+        if (categoryValue == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         // lấy đc id của thg cha: category
-        // set id vừa lấy, vào category_id của categoryDetail.
+        // set id vừa lấy, vào category_id của categoryValue.
 
-        categoryDetailService.save(categoryDetail);
+        categoryValueService.save(categoryValue);
         return new ResponseEntity<>("created!", HttpStatus.CREATED);
     }
 
     // Update category detail
-    @PutMapping("/categoryDetail/{id}")
+    @PutMapping("/categoryValue/{id}")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<String> updateCategoryDetail(@PathVariable("id") Integer id,
-                                                       @RequestBody CategoryValue categoryDetail) {
-        System.out.println("Updating Category Detail " + id);
-        CategoryValue currentCategoryDetail = categoryDetailService.findById(id).get();
-        if (currentCategoryDetail == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        categoryDetailService.save(categoryDetail);
+                                                       @RequestBody CategoryValue categoryValue) {
+        categoryValueService.update(id,categoryValue);
         return new ResponseEntity<>("Updated!", HttpStatus.OK);
     }
 
     // Delete category detail
-    @DeleteMapping("/categoryDetail/{id}")
+    @DeleteMapping("/categoryValue/{id}")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<CategoryValue> deleteCategoryDetail(@PathVariable("id") Integer id) {
-        CategoryValue categoryDetail = categoryDetailService.findById(id).get();
-        if (categoryDetail == null) {
+        CategoryValue categoryValue = categoryValueService.findById(id).get();
+        if (categoryValue == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        categoryDetailService.delete(id);
+        categoryValueService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
