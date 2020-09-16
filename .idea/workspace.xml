@@ -10,18 +10,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19d92ab9-a0a1-4b64-9ebd-7bf0e50c2fbb" name="Default Changelist" comment="add customer">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/data/model/ProductInfoCategoryValue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/data/repo/ProductInfoCategoryValueRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/IProductInfoCategoryValueService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/impl/ProductInfoCategoryValueServiceImpl.java" afterDir="false" />
+    <list default="true" id="19d92ab9-a0a1-4b64-9ebd-7bf0e50c2fbb" name="Default Changelist" comment="add model.addAttribute() and fix ProductInfo">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/IInvoiceExportService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/impl/InvoiceExportServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/controller/CategoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/controller/CategoryValueController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/controller/CategoryValueController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/controller/ProductInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/controller/ProductInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/ICategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/ICategoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/impl/CategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/impl/CategoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/controller/InvoiceExportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/controller/InvoiceExportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/data/model/UnitConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/data/model/UnitConstant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/ProductInStockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/ProductInStockService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/impl/InvoiceItemServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/impl/InvoiceItemServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/impl/ProductInStockServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/java1906/climan/services/impl/ProductInStockServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,7 +174,13 @@
       <workItem from="1599231017250" duration="159000" />
       <workItem from="1599231332139" duration="191000" />
       <workItem from="1599464913848" duration="10012000" />
-      <workItem from="1599635477274" duration="13698000" />
+      <workItem from="1599635477274" duration="13902000" />
+      <workItem from="1599669245474" duration="640000" />
+      <workItem from="1599673611506" duration="604000" />
+      <workItem from="1599722337559" duration="8324000" />
+      <workItem from="1599791047405" duration="94000" />
+      <workItem from="1600071723939" duration="6845000" />
+      <workItem from="1600186417227" duration="113000" />
     </task>
     <task id="LOCAL-00001" summary="fix CategoryController">
       <created>1597662951380</created>
@@ -207,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599476611183</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add model.addAttribute() and fix ProductInfo">
+      <created>1599649896343</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1599649896343</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,7 +239,8 @@
     <MESSAGE value="fix CategoryController" />
     <MESSAGE value="Invoice Import+Export" />
     <MESSAGE value="add customer" />
-    <option name="LAST_COMMIT_MESSAGE" value="add customer" />
+    <MESSAGE value="add model.addAttribute() and fix ProductInfo" />
+    <option name="LAST_COMMIT_MESSAGE" value="add model.addAttribute() and fix ProductInfo" />
   </component>
   <component name="WindowStateProjectService">
     <state x="395" y="95" key="#Inspections" timestamp="1595005676073">
@@ -252,10 +263,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="150" y="86" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1599130189098" />
-    <state x="574" y="123" key="#com.intellij.ide.util.MemberChooser" timestamp="1599648848117">
+    <state x="574" y="123" key="#com.intellij.ide.util.MemberChooser" timestamp="1599730275414">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="574" y="123" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1599648848117" />
+    <state x="574" y="123" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1599730275414" />
     <state x="568" y="324" key="#com.intellij.javaee.module.view.web.EditWebRootDialog" timestamp="1594976094748">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -356,10 +367,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state width="588" height="446" key="SwitcherDM/0.0.1536.834@0.0.1536.834" timestamp="1599639856041" />
-    <state x="361" y="137" key="Vcs.Push.Dialog.v2" timestamp="1599476613400">
+    <state x="361" y="137" key="Vcs.Push.Dialog.v2" timestamp="1599649897929">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="137" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1599476613400" />
+    <state x="361" y="137" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1599649897929" />
     <state width="775" height="424" key="XDebugger.FullValuePopup" timestamp="1599120255475">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -396,10 +407,14 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="209" y="37" key="new project wizard/0.0.1536.834@0.0.1536.834" timestamp="1599231161610" />
-    <state x="425" y="189" width="672" height="677" key="run.anything.popup" timestamp="1598351513733">
+    <state x="499" y="164" key="refactoring.ChangeSignatureDialog" timestamp="1599726308337">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="425" y="189" width="672" height="677" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1598351513733" />
+    <state x="499" y="164" key="refactoring.ChangeSignatureDialog/0.0.1536.834@0.0.1536.834" timestamp="1599726308337" />
+    <state x="425" y="189" width="672" height="677" key="run.anything.popup" timestamp="1600071945288">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="425" y="189" width="672" height="677" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1600071945288" />
     <state x="425" y="71" width="672" height="676" key="search.everywhere.popup" timestamp="1599644212998">
       <screen x="0" y="0" width="1536" height="834" />
     </state>

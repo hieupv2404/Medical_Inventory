@@ -47,7 +47,7 @@ public class InvoiceItemServiceImpl implements IInvoiceItemService {
     public Optional<InvoiceItem> findById(Integer invoiceItemId) {
         if(!invoiceItemRepository.existsById(invoiceItemId)){
             try{
-                throw new ResourceNotFoundException("Invoie item with"+invoiceItemId+"not found");
+                throw new ResourceNotFoundException("Invoice item with"+invoiceItemId+"not found");
             }catch (ResourceNotFoundException e){
                 e.printStackTrace();
             }
