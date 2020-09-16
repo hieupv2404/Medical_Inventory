@@ -1,34 +1,28 @@
 package com.java1906.climan.data.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Data
 @Table(name= "product_info_category_value")
-public class ProductInfoCategoryValue implements Serializable {
-    @Id
+@IdClass(ProductInfoCategoryValueId.class)
+public class ProductInfoCategoryValue {
 
+//   @EmbeddedId ProductInfoCategoryValueId productInfoCategoryValueId;
+
+    @Id
     private Integer productInfoId;
 
     @Id
     private Integer categoryValueId;
 
+    private String test;
+
     public ProductInfoCategoryValue() {
     }
 
-    public Integer getProductInfoId() {
-        return productInfoId;
-    }
 
-    public void setProductInfoId(Integer productInfoId) {
-        this.productInfoId = productInfoId;
-    }
-
-    public Integer getCategoryValueId() {
-        return categoryValueId;
-    }
-
-    public void setCategoryValueId(Integer categoryValueId) {
-        this.categoryValueId = categoryValueId;
-    }
 }

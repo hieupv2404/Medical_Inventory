@@ -22,9 +22,9 @@ public class ProductInfo implements Serializable {
     private Date updateDate;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "productInfo_categoryValue",
-            joinColumns = {@JoinColumn(name = "ProductInfo_id")},
-            inverseJoinColumns = {@JoinColumn(name = "categoryValue_id")})
+    @JoinTable(name = "product_info_category_value",
+            joinColumns = {@JoinColumn(name = "productInfoId")},
+            inverseJoinColumns = {@JoinColumn(name = "categoryValueId")})
     private List<CategoryValue> categoryValues;
 
     @OneToMany(fetch = FetchType.LAZY)

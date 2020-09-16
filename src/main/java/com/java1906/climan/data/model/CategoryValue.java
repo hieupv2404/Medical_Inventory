@@ -28,8 +28,8 @@ public class CategoryValue {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JsonIgnore
-    @JoinTable(name = "productInfo_categoryValue", joinColumns = { @JoinColumn(name = "ProductInfo_id") }, inverseJoinColumns = {
-            @JoinColumn(name = "categoryValue_id") })
+    @JoinTable(name = "product_info_category_value", joinColumns = { @JoinColumn(name = "productInfoId") }, inverseJoinColumns = {
+            @JoinColumn(name = "categoryValueId") })
     private List<ProductInfo> productInfos;
 
     public CategoryValue() {
