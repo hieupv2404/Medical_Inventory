@@ -67,180 +67,238 @@ public class ProductInStockServiceImpl implements ProductInStockService {
         }
     }
 
+//    @Override
+//    public double convertUnit(double qtyInp, UnitConstant unitInp, double qtySaved, UnitConstant unitSaved) {
+//        double qtyOut = 0;
+//        if (unitSaved.equals(UnitConstant.GAM)) {
+//            switch (unitInp) {
+//                case CAN:
+//                    qtyOut= (qtyInp * 500)+qtySaved;
+//                    break;
+//                case LY:
+//                    qtyOut= (qtyInp * 0.03)+qtySaved;
+//                    break;
+//                case DONGCAN:
+//                    qtyOut= (qtyInp * 3.1)+qtySaved;
+//                    break;
+//                case LANG:
+//                    qtyOut= (qtyInp * 31.25)+qtySaved;
+//                    break;
+//                case PHAN:
+//                    qtyOut= (qtyInp * 0.31)+qtySaved;
+//                    break;
+//                default:
+//                    throw new IllegalStateException("Unexpected value: " + unitInp);
+//            }
+//            return qtyOut;
+//        } else {
+//            switch (unitInp) {
+//                case CAN:
+//                    if (unitSaved == UnitConstant.CAN) {
+//                        qtyOut= (qtyInp + qtySaved);
+//                    }
+//
+//                    if (unitSaved == UnitConstant.DONGCAN) {
+//                        qtySaved *= 3.1;
+//                        qtyInp *= 500;
+//                        qtyOut= (qtyInp + qtySaved) / 3.1;
+//                    }
+//
+//                    if (unitSaved == UnitConstant.LANG) {
+//                        qtySaved *= 31.25;
+//                        qtyInp *= 500;
+//                        qtyOut= (qtyInp + qtySaved) / 31.25;
+//                    }
+//
+//                    if (unitSaved == UnitConstant.PHAN) {
+//                        qtySaved *= 0.31;
+//                        qtyInp *= 500;
+//                        qtyOut= (qtyInp + qtySaved) / 0.31;
+//                    }
+//
+//                    if (unitSaved == UnitConstant.LY) {
+//                        qtySaved *= 0.03;
+//                        qtyInp *= 500;
+//                        qtyOut= (qtyInp + qtySaved) / 0.03;
+//                    }
+//
+//                case LY:
+//                    if (unitSaved == UnitConstant.CAN) {
+//                        qtySaved *= 500;
+//                        qtyInp *= 0.03;
+//                        qtyOut= (qtyInp + qtySaved) / 500;
+//                    }
+//
+//                    if (unitSaved == UnitConstant.DONGCAN) {
+//                        qtySaved *= 3.1;
+//                        qtyInp *= 0.03;
+//                        qtyOut= (qtyInp + qtySaved) / 3.1;
+//                    }
+//
+//                    if (unitSaved == UnitConstant.LANG) {
+//                        qtySaved *= 31.25;
+//                        qtyInp *= 0.03;
+//                        qtyOut= (qtyInp + qtySaved) / 31.25;
+//                    }
+//
+//                    if (unitSaved == UnitConstant.PHAN) {
+//                        qtySaved *= 0.31;
+//                        qtyInp *= 0.03;
+//                        qtyOut= (qtyInp + qtySaved) / 0.31;
+//                    }
+//
+//                    if (unitSaved == UnitConstant.LY) {
+//                        qtyOut= (qtyInp + qtySaved);
+//                    }
+//                    break;
+//                case DONGCAN:
+//                    if (unitSaved == UnitConstant.CAN) {
+//                        qtySaved *= 500;
+//                        qtyInp *= 3.1;
+//                        qtyOut= (qtyInp + qtySaved) / 500;
+//                    }
+//
+//                    if (unitSaved == UnitConstant.DONGCAN) {
+//                        qtyOut= (qtyInp + qtySaved);
+//                    }
+//
+//                    if (unitSaved == UnitConstant.LANG) {
+//                        qtySaved *= 31.25;
+//                        qtyInp *= 3.1;
+//                        qtyOut= (qtyInp + qtySaved) / 31.25;
+//                    }
+//
+//                    if (unitSaved == UnitConstant.PHAN) {
+//                        qtySaved *= 0.31;
+//                        qtyInp *= 3.1;
+//                        qtyOut= (qtyInp + qtySaved) / 0.31;
+//                    }
+//
+//                    if (unitSaved == UnitConstant.LY) {
+//                        qtySaved *= 0.03;
+//                        qtyInp *= 3.1;
+//                        qtyOut= (qtyInp + qtySaved) / 0.03;
+//                    }
+//                    break;
+//                case LANG:
+//                    if (unitSaved == UnitConstant.CAN) {
+//                        qtySaved *= 500;
+//                        qtyInp *= 31.25;
+//                        qtyOut= (qtyInp + qtySaved) / 500;
+//                    }
+//
+//                    if (unitSaved == UnitConstant.DONGCAN) {
+//                        qtySaved *= 3.1;
+//                        qtyInp *= 31.25;
+//                        qtyOut= (qtyInp + qtySaved) / 3.1;
+//                    }
+//
+//                    if (unitSaved == UnitConstant.LANG) {
+//                        qtyOut= (qtyInp + qtySaved);
+//                    }
+//
+//                    if (unitSaved == UnitConstant.PHAN) {
+//                        qtySaved *= 0.31;
+//                        qtyInp *= 31.25;
+//                        qtyOut= (qtyInp + qtySaved) / 0.31;
+//                    }
+//
+//                    if (unitSaved == UnitConstant.LY) {
+//                        qtySaved *= 0.03;
+//                        qtyInp *= 31.25;
+//                        qtyOut= (qtyInp + qtySaved) / 0.03;
+//                    }
+//                    break;
+//                case PHAN:
+//                    if (unitSaved == UnitConstant.CAN) {
+//                        qtySaved *= 500;
+//                        qtyInp *= 0.31;
+//                        qtyOut= (qtyInp + qtySaved) / 500;
+//                    }
+//
+//                    if (unitSaved == UnitConstant.DONGCAN) {
+//                        qtySaved *= 3.1;
+//                        qtyInp *= 0.31;
+//                        qtyOut= (qtyInp + qtySaved) / 3.1;
+//                    }
+//
+//                    if (unitSaved == UnitConstant.LANG) {
+//                        qtySaved *= 31.25;
+//                        qtyInp *= 0.31;
+//                        qtyOut= (qtyInp + qtySaved) / 31.25;
+//                    }
+//
+//                    if (unitSaved == UnitConstant.PHAN) {
+//                        qtyOut= (qtyInp + qtySaved);
+//                    }
+//
+//                    if (unitSaved == UnitConstant.LY) {
+//                        qtySaved *= 0.03;
+//                        qtyInp *= 0.31;
+//                        qtyOut= (qtyInp + qtySaved) / 0.03;
+//                    }
+//                    break;
+//            }
+//            return qtyOut;
+//        }
+//    }
+
     @Override
-    public double convertUnit(double qtyInp, UnitConstant unitInp, double qtySaved, UnitConstant unitSaved) {
-        double qtyOut = 0;
-        if (unitSaved.equals(UnitConstant.GAM)) {
+    public double changeValueByUnit(UnitConstant unitInp, double qtySaved) {
+        double qtyOut=0;
+        if (unitInp == UnitConstant.GAM)
+            return qtySaved;
+        else
+        {
             switch (unitInp) {
                 case CAN:
-                    qtyOut= (qtyInp * 500)+qtySaved;
+                    qtyOut=  qtySaved / 500;
                     break;
                 case LY:
-                    qtyOut= (qtyInp * 0.03)+qtySaved;
+                    qtyOut = qtySaved / 0.03;
                     break;
                 case DONGCAN:
-                    qtyOut= (qtyInp * 3.1)+qtySaved;
+                   qtyOut = qtySaved / 3.1;
                     break;
                 case LANG:
-                    qtyOut= (qtyInp * 31.25)+qtySaved;
+                    qtyOut = qtySaved / 31.25;
                     break;
                 case PHAN:
-                    qtyOut= (qtyInp * 0.31)+qtySaved;
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + unitInp);
-            }
-            return qtyOut;
-        } else {
-            switch (unitInp) {
-                case CAN:
-                    if (unitSaved == UnitConstant.CAN) {
-                        qtyOut= (qtyInp + qtySaved) / 500;
-                    }
-
-                    if (unitSaved == UnitConstant.DONGCAN) {
-                        qtySaved *= 3.1;
-                        qtyInp *= 500;
-                        qtyOut= (qtyInp + qtySaved) / 3.1;
-                    }
-
-                    if (unitSaved == UnitConstant.LANG) {
-                        qtySaved *= 31.25;
-                        qtyInp *= 500;
-                        qtyOut= (qtyInp + qtySaved) / 31.25;
-                    }
-
-                    if (unitSaved == UnitConstant.PHAN) {
-                        qtySaved *= 0.31;
-                        qtyInp *= 500;
-                        qtyOut= (qtyInp + qtySaved) / 0.31;
-                    }
-
-                    if (unitSaved == UnitConstant.LY) {
-                        qtySaved *= 0.03;
-                        qtyInp *= 500;
-                        qtyOut= (qtyInp + qtySaved) / 0.03;
-                    }
-
-                case LY:
-                    if (unitSaved == UnitConstant.CAN) {
-                        qtySaved *= 500;
-                        qtyInp *= 0.03;
-                        qtyOut= (qtyInp + qtySaved) / 500;
-                    }
-
-                    if (unitSaved == UnitConstant.DONGCAN) {
-                        qtySaved *= 3.1;
-                        qtyInp *= 0.03;
-                        qtyOut= (qtyInp + qtySaved) / 3.1;
-                    }
-
-                    if (unitSaved == UnitConstant.LANG) {
-                        qtySaved *= 31.25;
-                        qtyInp *= 0.03;
-                        qtyOut= (qtyInp + qtySaved) / 31.25;
-                    }
-
-                    if (unitSaved == UnitConstant.PHAN) {
-                        qtySaved *= 0.31;
-                        qtyInp *= 0.03;
-                        qtyOut= (qtyInp + qtySaved) / 0.31;
-                    }
-
-                    if (unitSaved == UnitConstant.LY) {
-                        qtyOut= (qtyInp + qtySaved);
-                    }
-                    break;
-                case DONGCAN:
-                    if (unitSaved == UnitConstant.CAN) {
-                        qtySaved *= 500;
-                        qtyInp *= 3.1;
-                        qtyOut= (qtyInp + qtySaved) / 500;
-                    }
-
-                    if (unitSaved == UnitConstant.DONGCAN) {
-                        qtyOut= (qtyInp + qtySaved);
-                    }
-
-                    if (unitSaved == UnitConstant.LANG) {
-                        qtySaved *= 31.25;
-                        qtyInp *= 3.1;
-                        qtyOut= (qtyInp + qtySaved) / 31.25;
-                    }
-
-                    if (unitSaved == UnitConstant.PHAN) {
-                        qtySaved *= 0.31;
-                        qtyInp *= 3.1;
-                        qtyOut= (qtyInp + qtySaved) / 0.31;
-                    }
-
-                    if (unitSaved == UnitConstant.LY) {
-                        qtySaved *= 0.03;
-                        qtyInp *= 3.1;
-                        qtyOut= (qtyInp + qtySaved) / 0.03;
-                    }
-                    break;
-                case LANG:
-                    if (unitSaved == UnitConstant.CAN) {
-                        qtySaved *= 500;
-                        qtyInp *= 31.25;
-                        qtyOut= (qtyInp + qtySaved) / 500;
-                    }
-
-                    if (unitSaved == UnitConstant.DONGCAN) {
-                        qtySaved *= 3.1;
-                        qtyInp *= 31.25;
-                        qtyOut= (qtyInp + qtySaved) / 3.1;
-                    }
-
-                    if (unitSaved == UnitConstant.LANG) {
-                        qtyOut= (qtyInp + qtySaved);
-                    }
-
-                    if (unitSaved == UnitConstant.PHAN) {
-                        qtySaved *= 0.31;
-                        qtyInp *= 31.25;
-                        qtyOut= (qtyInp + qtySaved) / 0.31;
-                    }
-
-                    if (unitSaved == UnitConstant.LY) {
-                        qtySaved *= 0.03;
-                        qtyInp *= 31.25;
-                        qtyOut= (qtyInp + qtySaved) / 0.03;
-                    }
-                    break;
-                case PHAN:
-                    if (unitSaved == UnitConstant.CAN) {
-                        qtySaved *= 500;
-                        qtyInp *= 0.31;
-                        qtyOut= (qtyInp + qtySaved) / 500;
-                    }
-
-                    if (unitSaved == UnitConstant.DONGCAN) {
-                        qtySaved *= 3.1;
-                        qtyInp *= 0.31;
-                        qtyOut= (qtyInp + qtySaved) / 3.1;
-                    }
-
-                    if (unitSaved == UnitConstant.LANG) {
-                        qtySaved *= 31.25;
-                        qtyInp *= 0.31;
-                        qtyOut= (qtyInp + qtySaved) / 31.25;
-                    }
-
-                    if (unitSaved == UnitConstant.PHAN) {
-                        qtyOut= (qtyInp + qtySaved);
-                    }
-
-                    if (unitSaved == UnitConstant.LY) {
-                        qtySaved *= 0.03;
-                        qtyInp *= 0.31;
-                        qtyOut= (qtyInp + qtySaved) / 0.03;
-                    }
+                    qtyOut = qtySaved / 0.31;
                     break;
             }
             return qtyOut;
         }
     }
+
+    @Override
+    public double importConvertToGam(double qtyInp, UnitConstant unitInp) {
+        double qtyOut = 0;
+        if (unitInp == UnitConstant.GAM) {
+            return qtyInp;
+        } else {
+            switch (unitInp) {
+                case CAN:
+                    qtyOut = (qtyInp * 500);
+                    break;
+                case LY:
+                    qtyOut = (qtyInp * 0.03);
+                    break;
+                case DONGCAN:
+                    qtyOut = (qtyInp * 3.1);
+                    break;
+                case LANG:
+                    qtyOut = (qtyInp * 31.25);
+                    break;
+                case PHAN:
+                    qtyOut = (qtyInp * 0.31);
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + unitInp);
+            }
+            return qtyOut;
+        }
+    }
+
 }
 

@@ -8,8 +8,8 @@ import java.util.Optional;
 public interface IInvoiceItemService {
     List<InvoiceItem> findAll();
     Optional<InvoiceItem> findById(Integer invoiceItemId);
-    InvoiceItem save( int invoiceId,InvoiceItem invoiceItem, int productId);
-    InvoiceItem update(Integer invoiceId, InvoiceItem invoiceItem);
+    InvoiceItem save( int invoiceId,InvoiceItem invoiceItem,Integer unitId, int productId);
+    InvoiceItem update(Integer invoiceId, Integer productId,Integer unitId, InvoiceItem invoiceItem);
     void delete(Integer invoiceItemId);
     List<InvoiceItem> findAllByInvoiceId(int invoiceId);
 

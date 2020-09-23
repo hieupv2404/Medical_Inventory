@@ -12,5 +12,9 @@ public interface ProductInStockService {
 
     void saveOrUpdate(InvoiceItem invoiceItem);
 
-    double convertUnit(double qtyInp, UnitConstant unitInp, double qtySaved, UnitConstant unitSaved);
+//    double convertUnit(double qtyInp, UnitConstant unitInp, double qtySaved, UnitConstant unitSaved);
+
+    double changeValueByUnit ( UnitConstant unitInp, double qtySaved);
+
+    double importConvertToGam(double qtyInp, UnitConstant unitInp);
 }

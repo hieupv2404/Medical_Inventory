@@ -40,16 +40,18 @@ public class InvoiceItemController {
     public ResponseEntity<InvoiceItem> createInvoiceItem(
             @RequestParam int invoiceId,
             @RequestParam int productId,
+            @RequestParam int unitId,
             @RequestBody InvoiceItem InvoiceItem)   {
-        return new ResponseEntity<>(invoiceItemService.save(invoiceId,InvoiceItem, productId),HttpStatus.OK);
+        return new ResponseEntity<>(invoiceItemService.save(invoiceId,InvoiceItem, unitId, productId),HttpStatus.OK);
     }
 
     // Update category value
     @PutMapping("/invoice/invoiceItem/{InvoiceItemId}")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<InvoiceItem> updateInvoiceItem(@PathVariable("InvoiceItemId") Integer InvoiceItemId,
-                                                              @RequestBody InvoiceItem InvoiceItem) {
-        return new ResponseEntity<InvoiceItem>(invoiceItemService.update(InvoiceItemId,InvoiceItem), HttpStatus.OK);
+                                                              @RequestParam int productId, @RequestParam int unitId,
+                                                         @RequestBody InvoiceItem InvoiceItem) {
+        return new ResponseEntity<InvoiceItem>(invoiceItemService.update(InvoiceItemId,productId,unitId, InvoiceItem), HttpStatus.OK);
     }
 
     // Delete category value

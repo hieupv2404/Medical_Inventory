@@ -2,10 +2,10 @@
   <artifact type="exploded-war" name="demo-interceptor:Web exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/demo_interceptor_Web_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="demo-interceptor/web/Web" />
+      <element id="javaee-facet-resources" facet="Medical_Inventory/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="demo-interceptor" />
+          <element id="module-output" name="Medical_Inventory" />
         </element>
       </element>
     </root>

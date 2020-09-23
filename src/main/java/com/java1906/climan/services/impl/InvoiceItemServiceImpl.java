@@ -10,6 +10,7 @@ import com.java1906.climan.data.repo.InvoiceRepository;
 import com.java1906.climan.data.repo.ProductInStockRepository;
 import com.java1906.climan.data.repo.ProductInfoRepository;
 import com.java1906.climan.services.IInvoiceItemService;
+import com.java1906.climan.services.IUnitService;
 import com.java1906.climan.services.ProductInStockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,11 @@ public class InvoiceItemServiceImpl implements IInvoiceItemService {
     @Autowired
     private ProductInStockService productInStockService;
 
+    @Autowired
+    private IUnitService unitService;
+
+
+
 
     @Override
     public List<InvoiceItem> findAll() {
@@ -56,7 +62,7 @@ public class InvoiceItemServiceImpl implements IInvoiceItemService {
     }
 
     @Override
-    public InvoiceItem save(int invoiceId, InvoiceItem invoiceItem, int productId) {
+    public InvoiceItem save(int invoiceId, InvoiceItem invoiceItem, Integer unitId, int productId) {
         List<InvoiceItem> invoiceItems = new ArrayList<>();
 
 
@@ -76,9 +82,9 @@ public class InvoiceItemServiceImpl implements IInvoiceItemService {
         invoiceItem.setProductInfo(productInfo);
         invoiceItem.setPriceInTotal(invoiceItem.getQty()*invoiceItem.getPriceIn());
         invoiceItem.setPriceOutTotal(invoiceItem.getQty()*invoiceItem.getPriceOut());
+        invoiceItem.setUnit(unitService.findById(unitId).get());
         InvoiceItem invoiceItem1 = invoiceItemRepository.save(invoiceItem);
-        invoiceItems.add(invoiceItem1);
-        invoice1.setInvoiceItems(invoiceItems);
+        invoice1.getInvoiceItems().add(invoiceItem1);
         invoice1.setInTotal(invoice1.getInTotal()+ invoiceItem1.getPriceInTotal());
         invoice1.setOutTotal(invoice1.getOutTotal()+ invoiceItem1.getPriceOutTotal());
 //        productInStockRepository.save(new ProductInStock(productInfo, invoiceItem.getQty(), invoiceItem.getUnit(), invoiceItem.getPriceInTotal()));
@@ -87,7 +93,7 @@ public class InvoiceItemServiceImpl implements IInvoiceItemService {
     }
 
     @Override
-    public InvoiceItem update(Integer invoiceItemId, InvoiceItem invoiceItem) {
+    public InvoiceItem update(Integer invoiceItemId, Integer productId, Integer unitId, InvoiceItem invoiceItem) {
         if(!invoiceItemRepository.existsById(invoiceItemId)){
             try {
                 throw new ResourceNotFoundException("Invoice item with id "+invoiceItemId + "not found");
@@ -98,14 +104,26 @@ public class InvoiceItemServiceImpl implements IInvoiceItemService {
         Optional<InvoiceItem> invoiceItem1 =invoiceItemRepository.findById(invoiceItemId);
         if(!invoiceItem1.isPresent()){
             try {
-                throw new ResourceNotFoundException("Invoice item with"+invoiceItemId + " not fount");
+                throw new ResourceNotFoundException("Invoice item with"+invoiceItemId + " not found");
             } catch (ResourceNotFoundException e) {
                 e.printStackTrace();
             }
         }
 
         InvoiceItem invoiceItem2 =invoiceItem1.get();
+        invoiceItem2.setProductInfo(productInfoRepository.findById(productId).get());
+        invoiceItem2.setPriceIn(invoiceItem.getPriceIn());
+        invoiceItem2.setPriceOut(invoiceItem.getPriceOut());
+        invoiceItem2.setQty(invoiceItem.getQty());
+        invoiceItem2.setUnit(unitService.findById(unitId).get());
+        invoiceItem2.setPriceInTotal(invoiceItem.getQty()*invoiceItem.getPriceIn());
+        invoiceItem2.setPriceOutTotal(invoiceItem.getQty()*invoiceItem.getPriceOut());
 
+        Invoice invoice1 = invoiceRepository.findById(invoiceItem2.getInvoice().getId()).get();
+        invoice1.setInTotal(invoice1.getInTotal()+ invoiceItem2.getPriceInTotal());
+        invoice1.setOutTotal(invoice1.getOutTotal()+ invoiceItem2.getPriceOutTotal());
+        invoiceRepository.save(invoice1);
+        productInStockService.saveOrUpdate(invoiceItem2);
 
         return invoiceItemRepository.save(invoiceItem2);
     }
