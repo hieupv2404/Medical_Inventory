@@ -19,8 +19,8 @@ public class CategoryController {
     //Get all category
     @GetMapping("/category")
     @HasRole({"STAFF", "ADMIN"})
-    public ResponseEntity<List<Category>> showCategoryList(Model model) {
-        List<Category> categoryList = categoryService.findAll();
+    public ResponseEntity<List<Category>> showCategoryList(Model model, @RequestParam String categoryName) {
+        List<Category> categoryList = categoryService.findAll(categoryName);
         if (categoryList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

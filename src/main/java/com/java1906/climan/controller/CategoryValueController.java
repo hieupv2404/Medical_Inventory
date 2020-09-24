@@ -24,8 +24,8 @@ public class CategoryValueController {
     //Get all category
     @GetMapping("/categoryValue")
     @HasRole({"STAFF", "ADMIN"})
-    public ResponseEntity<List<CategoryValue>> showCategoryList(Model model) {
-        List<CategoryValue> categoryValueList = (List<CategoryValue>) categoryValueService.findAll();
+    public ResponseEntity<List<CategoryValue>> showCategoryList(Model model, @RequestParam(value="name") String categoryValueName) {
+        List<CategoryValue> categoryValueList = categoryValueService.findAll(categoryValueName);
         if (categoryValueList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

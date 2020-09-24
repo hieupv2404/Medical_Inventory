@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class SupplierController {
     @Autowired
@@ -17,9 +19,10 @@ public class SupplierController {
     //Get all supplier
     @GetMapping("/supplier")
     @HasRole({"STAFF", "ADMIN"})
-    public String showSupplierList() {
-//         return new ResponseEntity<>(supplierService.getAll(),HttpStatus.OK);
-        return "calendar";
+    public ResponseEntity<List<Supplier>> showSupplierList(@RequestParam(value = "name") String name,
+                                   @RequestParam("email") String email) {
+        List<Supplier> suppliers = supplierService.findAll(name, email);
+         return new ResponseEntity<>(suppliers,HttpStatus.OK);
     }
 
     //Get supplier by id

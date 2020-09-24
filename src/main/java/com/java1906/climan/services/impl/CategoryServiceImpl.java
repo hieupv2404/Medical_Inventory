@@ -4,6 +4,7 @@ import com.java1906.climan.controller.ResourceNotFoundException;
 import com.java1906.climan.data.model.Category;
 import com.java1906.climan.data.repo.CategoryRepository;
 import com.java1906.climan.services.ICategoryService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,8 +23,14 @@ public class CategoryServiceImpl implements ICategoryService {
 
 
     @Override
-    public List<Category> findAll() {
-        return (List<Category>) categoryRepository.findAll();
+    public List<Category> findAll(String categoryName) {
+        if (categoryName != null && !StringUtils.isEmpty(categoryName))
+        {
+            return categoryRepository.findByNameCategory(categoryName);
+        }
+        else {
+            return categoryRepository.findAll();
+        }
     }
 
     @Override

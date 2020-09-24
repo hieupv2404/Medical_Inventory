@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface ICategoryValueService {
 
-    List<CategoryValue> findAll();
+    List<CategoryValue> findAll(String categoryValueName);
     Optional<CategoryValue> findById(Integer categoryValueId);
     CategoryValue save( int categoryId,CategoryValue categoryValue);
     CategoryValue update(int categoryValueId, CategoryValue categoryValue);

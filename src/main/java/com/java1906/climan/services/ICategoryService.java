@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ICategoryService {
-    List<Category> findAll();
+    List<Category> findAll(String categoryName);
 
     Optional<Category> findById(Integer id);
 

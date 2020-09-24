@@ -6,6 +6,7 @@ import com.java1906.climan.data.model.CategoryValue;
 import com.java1906.climan.data.repo.CategoryRepository;
 import com.java1906.climan.data.repo.CategoryValueRepository;
 import com.java1906.climan.services.ICategoryValueService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,8 +23,15 @@ public class CategoryValueServiceImpl implements ICategoryValueService {
     @Autowired
     private CategoryRepository categoryRepository;
     @Override
-    public List<CategoryValue> findAll() {
-        return categoryValueRepository.findAll();
+    public List<CategoryValue> findAll(String categoryValueName) {
+        if (categoryValueName != null && !StringUtils.isEmpty(categoryValueName))
+        {
+            return categoryValueRepository.findCategoryValueByName(categoryValueName);
+        }
+        else {
+            return categoryValueRepository.findAll();
+        }
+
     }
 
     @Override

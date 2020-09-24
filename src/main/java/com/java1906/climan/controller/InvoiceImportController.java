@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -55,6 +57,7 @@ public class InvoiceImportController {
             InvoiceSupplierReport invoiceSupplierReport = new InvoiceSupplierReport();
             invoiceSupplierReport.setCreatedDate(invoiceImport1.getCreatedDate());
             invoiceSupplierReport.setEmail(invoiceImport1.getEmail());
+            invoiceSupplierReport.setCode(invoiceImport1.getCode());
             invoiceSupplierReport.setSupplierId(invoiceImport1.getSupplierId());
             invoiceSupplierReport.setSupplierName(invoiceImport1.getSupplierName());
             invoiceSupplierReport.setSupplierAddress(invoiceImport1.getSupplierAddress());
@@ -83,6 +86,10 @@ public class InvoiceImportController {
     @HasRole({"STAFF", "ADMIN", "DOCTOR"})
     public ResponseEntity<Invoice> createInvoce(@RequestBody Invoice invoice){
         invoice.setType(1);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        int maxId = invoiceSupplierRepository.findMaxIdInInvoice();
+        invoice.setCode("Import"+( String.valueOf(calendar.get(Calendar.DAY_OF_MONTH) ) + (String.valueOf(calendar.get(Calendar.MONTH))) + String.valueOf(maxId) ));
         return new ResponseEntity<>(invoiceService.save(invoice),HttpStatus.CREATED);
     }
 
@@ -115,36 +122,40 @@ public class InvoiceImportController {
         cell = row.createCell(0, CellType.STRING);
         cell.setCellValue("ID Invoice");
 
+        // col code invoice header
+        cell = row.createCell(1, CellType.STRING);
+        cell.setCellValue("Code");
+
         // col name supplier
-        cell = row.createCell(1,CellType.STRING);
+        cell = row.createCell(2,CellType.STRING);
         cell.setCellValue("Supplier");
 
         // col address supplier
-        cell = row.createCell(2,CellType.STRING);
+        cell = row.createCell(3,CellType.STRING);
         cell.setCellValue("Address");
 
         // col phone supplier
-        cell = row.createCell(3,CellType.STRING);
+        cell = row.createCell(4,CellType.STRING);
         cell.setCellValue("Phone");
 
         // col email supplier
-        cell = row.createCell(4,CellType.STRING);
+        cell = row.createCell(5,CellType.STRING);
         cell.setCellValue("Email");
 
         // col in total inv
-        cell = row.createCell(5,CellType.STRING);
+        cell = row.createCell(6,CellType.STRING);
         cell.setCellValue("In Total");
 
         // col out total inv
-        cell = row.createCell(6,CellType.STRING);
+        cell = row.createCell(7,CellType.STRING);
         cell.setCellValue("Out Total");
 
         // col create date inv
-        cell = row.createCell(7,CellType.STRING);
+        cell = row.createCell(8,CellType.STRING);
         cell.setCellValue("Create Date");
 
         // col update date inv
-        cell = row.createCell(8,CellType.STRING);
+        cell = row.createCell(9,CellType.STRING);
         cell.setCellValue("Update Date");
 
         // Data
@@ -158,36 +169,40 @@ public class InvoiceImportController {
             cell = row.createCell(0,CellType.STRING);
             cell.setCellValue(invoiceSupplierReports1.getId());
 
-            // col name supplier
+            // col code invoice header
             cell = row.createCell(1,CellType.STRING);
+            cell.setCellValue(invoiceSupplierReports1.getCode());
+
+            // col name supplier
+            cell = row.createCell(2,CellType.STRING);
             cell.setCellValue(invoiceSupplierReports1.getSupplierName());
 
             // col address supplier
-            cell = row.createCell(2,CellType.STRING);
+            cell = row.createCell(3,CellType.STRING);
             cell.setCellValue(invoiceSupplierReports1.getSupplierAddress());
 
             // col phone supplier
-            cell = row.createCell(3,CellType.STRING);
+            cell = row.createCell(4,CellType.STRING);
             cell.setCellValue(invoiceSupplierReports1.getNumberPhone());
 
             // col email cus
-            cell = row.createCell(4,CellType.STRING);
+            cell = row.createCell(5,CellType.STRING);
             cell.setCellValue(invoiceSupplierReports1.getEmail());
 
             // col in total inv
-            cell = row.createCell(5,CellType.NUMERIC);
+            cell = row.createCell(6,CellType.NUMERIC);
             cell.setCellValue(invoiceSupplierReports1.getInTotal());
 
             // col out total inv
-            cell = row.createCell(6,CellType.NUMERIC);
+            cell = row.createCell(7,CellType.NUMERIC);
             cell.setCellValue(invoiceSupplierReports1.getOutTotal());
 
             // col create date inv
-            cell = row.createCell(7,CellType.STRING);
+            cell = row.createCell(8,CellType.STRING);
             cell.setCellValue(invoiceSupplierReports1.getCreatedDate());
 
             // col update date inv
-            cell = row.createCell(8,CellType.STRING);
+            cell = row.createCell(9,CellType.STRING);
             cell.setCellValue(invoiceSupplierReports1.getUpdatedDate());
 
 
@@ -198,15 +213,15 @@ public class InvoiceImportController {
         row = sheet.createRow(rowNum);
 
         // col create date inv
-        cell = row.createCell(4,CellType.NUMERIC);
+        cell = row.createCell(5,CellType.NUMERIC);
         cell.setCellValue("Total");
 
         // col create date inv
-        cell = row.createCell(5,CellType.NUMERIC);
+        cell = row.createCell(6,CellType.NUMERIC);
         cell.setCellValue(priceInTotal);
 
         // col create date inv
-        cell = row.createCell(6,CellType.STRING);
+        cell = row.createCell(7,CellType.STRING);
         cell.setCellValue(priceOutTotal);
 
 

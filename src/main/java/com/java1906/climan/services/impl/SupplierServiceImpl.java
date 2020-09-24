@@ -4,6 +4,7 @@ import com.java1906.climan.controller.ResourceNotFoundException;
 import com.java1906.climan.data.model.Supplier;
 import com.java1906.climan.data.repo.SupplierRepository;
 import com.java1906.climan.services.ISupplierService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,8 +20,14 @@ public class SupplierServiceImpl implements ISupplierService {
     private SupplierRepository supplierRepository;
 
     @Override
-    public List<Supplier> findAll() {
-        return supplierRepository.findAll();
+    public List<Supplier> findAll(String name,String email) {
+        if(name != null && !StringUtils.isEmpty(name) || email != null && !StringUtils.isEmpty(email))
+        {
+            return supplierRepository.findSupplierByProperty(name,email);
+        }
+        else {
+            return supplierRepository.findAll();
+        }
     }
 
     @Override

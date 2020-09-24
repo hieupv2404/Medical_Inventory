@@ -92,10 +92,9 @@ public class InvoiceServiceImpl implements IInvoiceService {
             }
         }
         Invoice invoice1 =invoiceById.get();
-        invoice1.setCreatedDate(invoice.getCreatedDate());
         invoice1.setUpdatedDate(new Date());
-
-
+        invoice1.setCustomerId(invoice.getCustomerId());
+        invoice1.setSupplierId(invoice.getSupplierId());
         return invoiceRepository.save(invoice1);
     }
 

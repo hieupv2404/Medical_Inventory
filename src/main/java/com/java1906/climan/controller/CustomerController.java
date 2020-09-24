@@ -21,8 +21,9 @@ public class CustomerController {
     //Get all customer
     @GetMapping("/customer")
     @HasRole({"STAFF", "ADMIN"})
-    public ResponseEntity<List<Customer>> showCustomerList(Model model) {
-        List<Customer> customerList = customerService.findAll();
+    public ResponseEntity<List<Customer>> showCustomerList(Model model, @RequestParam(value = "name") String name,
+                                                                                                                @RequestParam("email") String email) {
+        List<Customer> customerList = customerService.findAll(name,email);
         model.addAttribute("titlePage","Customer List");
         model.addAttribute("customerList",customerList);
         return new ResponseEntity<>(customerList,HttpStatus.OK);

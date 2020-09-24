@@ -12,9 +12,12 @@ public interface InvoiceCustomerRepository extends JpaRepository<InvoiceCustomer
 //            "  WHERE i.type = 1 AND i.activeFlag = 1 AND s.supplierId = i.supplierId;"
 //            ,nativeQuery = true)
 
-        @Query(value="SELECT i.id, i.in_total, i.out_total, i.created_date, i.updated_date, s.id as 'customer_id', s.name, s.address, s.number_phone, s.email\n" +
-                "                FROM Invoice i, Customer s\n" +
+        @Query(value="SELECT i.id, i.code, i.in_total, i.out_total, i.created_date, i.updated_date, s.id as 'customer_id', s.name, s.address, s.number_phone, s.email\n" +
+                "                FROM invoice i, customer s\n" +
                 "                WHERE i.type = 2 AND i.active_flag = 1 AND s.id = i.customer_id"
                 ,nativeQuery = true)
         List<InvoiceCustomer> findInvoiceExport();
+
+        @Query(value="select max(id)+1 from invoice",nativeQuery=true )
+        int findMaxIdInInvoice();
 }

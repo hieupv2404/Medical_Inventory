@@ -8,6 +8,7 @@ import java.util.Date;
 public class InvoiceCustomer {
     @Id
     private Integer id;
+    private String code;
     private double inTotal;       // tong gia nhap
     private double outTotal;    // tong gia xuat
     private Date createdDate;
@@ -26,6 +27,13 @@ public class InvoiceCustomer {
         this.id = id;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 
     public double getInTotal() {
         return inTotal;

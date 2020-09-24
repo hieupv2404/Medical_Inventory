@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface ISupplierService {
 
-    List<Supplier> findAll();
+    List<Supplier> findAll(String name, String email);
 
     Optional<Supplier> findById(int supplierId);
 

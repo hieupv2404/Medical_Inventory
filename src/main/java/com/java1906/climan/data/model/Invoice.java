@@ -10,6 +10,7 @@ public class Invoice implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    private String code;
     private int type; // kieu hoa don
     private double inTotal;       // tong gia nhap
     private double outTotal;    // tong gia xuat
@@ -32,6 +33,14 @@ public class Invoice implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public int getType() {

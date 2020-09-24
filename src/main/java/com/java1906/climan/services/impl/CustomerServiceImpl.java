@@ -6,6 +6,7 @@ import com.java1906.climan.data.repo.CustomerRepository;
 import com.java1906.climan.data.repo.CustomerRepository;
 import com.java1906.climan.services.ICustomerService;
 import com.java1906.climan.services.ICustomerService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,8 +22,14 @@ public class CustomerServiceImpl implements ICustomerService {
     private CustomerRepository customerRepository;
 
     @Override
-    public List<Customer> findAll() {
-        return customerRepository.findAll();
+    public List<Customer> findAll(String name, String email) {
+        if(name != null && !StringUtils.isEmpty(name) || email != null && !StringUtils.isEmpty(email))
+        {
+            return customerRepository.findCustomerByProperty(name,email);
+        }
+        else {
+            return customerRepository.findAll();
+        }
     }
 
     @Override
