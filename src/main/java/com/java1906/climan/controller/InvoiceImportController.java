@@ -45,9 +45,11 @@ public class InvoiceImportController {
 
     @GetMapping("/invoiceImport")
     @HasRole({"STAFF", "ADMIN", "DOCTOR"})
-    public ResponseEntity<List<InvoiceSupplier>> showInvoiceList(Model model) {
+    public ResponseEntity<List<InvoiceSupplier>> showInvoiceList(Model model,@RequestParam(value = "name") String name,
+                                                                 @RequestParam(value = "code") String code,
+                                                                 @RequestParam("email") String email) {
         invoiceSupplierRepository.deleteAll();
-        List<InvoiceSupplier> invoiceImport = invoiceService.findAllInvoiceImport();
+        List<InvoiceSupplier> invoiceImport = invoiceService.findAllInvoiceImport(name, code, email);
         priceInTotal = 0;
         priceOutTotal = 0;
         for (InvoiceSupplier invoiceImport1:invoiceImport)

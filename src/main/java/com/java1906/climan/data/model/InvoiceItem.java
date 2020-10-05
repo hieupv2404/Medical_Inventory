@@ -22,7 +22,7 @@ public class InvoiceItem implements Serializable {
     @JsonIgnore
     private Invoice invoice;
 
-    private int qty;    // so luong
+    private double qty;    // so luong
 
     @ManyToOne
     @JoinColumn(name ="unit_id")
@@ -62,11 +62,11 @@ public class InvoiceItem implements Serializable {
         this.invoice = invoice;
     }
 
-    public int getQty() {
+    public double getQty() {
         return qty;
     }
 
-    public void setQty(int qty) {
+    public void setQty(double qty) {
         this.qty = qty;
     }
 

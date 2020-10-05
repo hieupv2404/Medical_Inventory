@@ -11,8 +11,8 @@ import java.util.Optional;
 
 public interface IInvoiceService {
         List<Invoice> findAllInvoice();
-        List<InvoiceSupplier> findAllInvoiceImport();
-        List<InvoiceCustomer> findAllInvoiceExport();
+        List<InvoiceSupplier> findAllInvoiceImport(String name, String code, String email);
+        List<InvoiceCustomer> findAllInvoiceExport(String name, String code, String email);
 
         Optional<Invoice> findById(Integer invoiceId);
 

@@ -36,8 +36,9 @@ class ProductInfoController {
     //Get all product
     @GetMapping("/productInfo")
     @HasRole({"STAFF", "ADMIN", "DOCTOR"})
-    public ResponseEntity<Iterable<ProductInfo>> showProductList(Model model) {
-        Iterable<ProductInfo> productList = productInfoService.findAll();
+    public ResponseEntity<Iterable<ProductInfo>> showProductList(Model model, @RequestParam("name") String productName,
+                                                                                                                        @RequestParam("categoryValue") String categoryValue) {
+        Iterable<ProductInfo> productList = productInfoService.findAll(productName, categoryValue);
         model.addAttribute("productList",productList);
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }

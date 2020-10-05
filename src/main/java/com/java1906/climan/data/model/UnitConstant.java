@@ -10,11 +10,19 @@ public enum UnitConstant {
 
     private Integer value;
 
-    UnitConstant(Integer value) {
+    private UnitConstant(Integer value) {
         this.value = value;
     }
+    
 
-/*
+    public Integer getValue() {
+        return this.value;
+    }
+
+
+
+
+    /*
     1 cân = 500 gam.
     1 lạng = 31,25 gam.
     1 đồng cân = 3,1 gam.

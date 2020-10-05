@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IProducInfoService {
-    List<ProductInfo> findAll();
+    List<ProductInfo> findAll(String productName, String categoryValue);
 
     Optional<ProductInfo> findById(int id);
 

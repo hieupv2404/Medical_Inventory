@@ -88,6 +88,7 @@ public class InvoiceItemServiceImpl implements IInvoiceItemService {
         invoice1.setInTotal(invoice1.getInTotal()+ invoiceItem1.getPriceInTotal());
         invoice1.setOutTotal(invoice1.getOutTotal()+ invoiceItem1.getPriceOutTotal());
 //        productInStockRepository.save(new ProductInStock(productInfo, invoiceItem.getQty(), invoiceItem.getUnit(), invoiceItem.getPriceInTotal()));
+        invoiceItem.setQty(productInStockService.importConvertToGam(invoiceItem.getQty(),invoiceItem.getUnit().getId()) );
         productInStockService.saveOrUpdate(invoiceItem);
         return invoiceItem1;
     }

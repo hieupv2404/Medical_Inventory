@@ -10,6 +10,7 @@ import com.java1906.climan.data.repo.InvoiceSupplierRepository;
 import com.java1906.climan.data.repo.ProductInfoRepository;
 import com.java1906.climan.dto.InvoiceDTO;
 import com.java1906.climan.services.IInvoiceService;
+import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,13 +43,25 @@ public class InvoiceServiceImpl implements IInvoiceService {
     }
 
     @Override
-    public List<InvoiceSupplier> findAllInvoiceImport() {
-        return invoiceSupplierRepository.findInvoiceImport();
+    public List<InvoiceSupplier> findAllInvoiceImport(String name, String code, String email) {
+        if(name != null && !StringUtils.isEmpty(name) || email != null && !StringUtils.isEmpty(email) || code != null && !StringUtils.isEmpty(code))
+        {
+            return invoiceSupplierRepository.findInvoiceImport(name, code, email);
+        }
+        else {
+            return invoiceSupplierRepository.findAllInvoiceImport();
+        }
     }
 
     @Override
-    public List<InvoiceCustomer> findAllInvoiceExport() {
-        return invoiceCustomerRepository.findInvoiceExport();
+    public List<InvoiceCustomer> findAllInvoiceExport(String name, String code, String email) {
+        if(name != null && !StringUtils.isEmpty(name) || email != null && !StringUtils.isEmpty(email) || code != null && !StringUtils.isEmpty(code))
+        {
+            return invoiceCustomerRepository.findInvoiceExport(name, code, email);
+        }
+        else {
+            return invoiceCustomerRepository.findAllInvoiceExport();
+        }
     }
 
     @Override

@@ -8,7 +8,7 @@ import com.java1906.climan.data.model.UnitConstant;
 import java.util.List;
 
 public interface ProductInStockService {
-    List<ProductInStock> findAll();
+    List<ProductInStock> findAll(String productName, String categoryValue);
 
     void saveOrUpdate(InvoiceItem invoiceItem);
 
@@ -16,5 +16,5 @@ public interface ProductInStockService {
 
     double changeValueByUnit ( UnitConstant unitInp, double qtySaved);
 
-    double importConvertToGam(double qtyInp, UnitConstant unitInp);
+    double importConvertToGam(double qtyInp, Integer unitInp);
 }

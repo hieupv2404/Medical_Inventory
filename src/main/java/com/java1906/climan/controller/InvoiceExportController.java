@@ -44,11 +44,13 @@ public class InvoiceExportController {
 
     @GetMapping("/invoiceExport")
     @HasRole({"STAFF", "ADMIN", "DOCTOR"})
-    public ResponseEntity<List<InvoiceCustomer>> showInvoiceList(Model model) {
+    public ResponseEntity<List<InvoiceCustomer>> showInvoiceList(Model model,@RequestParam(value = "name") String name,
+                                                                 @RequestParam(value = "code") String code,
+                                                                 @RequestParam("email") String email) {
         invoiceCustomerReportRepository.deleteAll();
         priceInTotal = 0;
         priceOutTotal = 0;
-        List<InvoiceCustomer> invoiceExport = invoiceService.findAllInvoiceExport();
+        List<InvoiceCustomer> invoiceExport = invoiceService.findAllInvoiceExport(name, code, email);
 
         for (InvoiceCustomer invoiceExport1:invoiceExport)
         {

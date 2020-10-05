@@ -14,10 +14,9 @@ public class ProductInStock implements Serializable {
 
     @ManyToOne
     @JoinColumn(name ="product_id")
-    @JsonIgnore
     private ProductInfo productInfo;
 
-    private int qty;
+    private double qty;
 
     @ManyToOne
     @JoinColumn(name ="unit_id")
@@ -56,11 +55,11 @@ public class ProductInStock implements Serializable {
         this.productInfo = productInfo;
     }
 
-    public int getQty() {
+    public double getQty() {
         return qty;
     }
 
-    public void setQty(int qty) {
+    public void setQty(double qty) {
         this.qty = qty;
     }
 

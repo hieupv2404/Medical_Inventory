@@ -6,6 +6,7 @@ import com.java1906.climan.data.repo.InvoiceRepository;
 import com.java1906.climan.data.repo.ProductInStockRepository;
 import com.java1906.climan.data.repo.ProductInfoRepository;
 import com.java1906.climan.services.ProductInStockService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,8 +29,14 @@ public class ProductInStockServiceImpl implements ProductInStockService {
     private ProductInfoRepository productInfoRepository;
 
     @Override
-    public List<ProductInStock> findAll() {
-        return productInStockRepository.findAll();
+    public List<ProductInStock> findAll(String productName, String categoryValue) {
+        if (productName != null && !StringUtils.isEmpty(productName) || categoryValue != null && !StringUtils.isEmpty(categoryValue))
+        {
+//            return productInStockRepository.findByProperty(productName,categoryValue);
+            return productInStockRepository.findAll();        }
+        else {
+            return productInStockRepository.findAll();
+        }
     }
 
     @Override
@@ -272,33 +279,46 @@ public class ProductInStockServiceImpl implements ProductInStockService {
     }
 
     @Override
-    public double importConvertToGam(double qtyInp, UnitConstant unitInp) {
+    public double importConvertToGam(double qtyInp, Integer unitInp) {
         double qtyOut = 0;
-        if (unitInp == UnitConstant.GAM) {
-            return qtyInp;
-        } else {
-            switch (unitInp) {
-                case CAN:
-                    qtyOut = (qtyInp * 500);
-                    break;
-                case LY:
-                    qtyOut = (qtyInp * 0.03);
-                    break;
-                case DONGCAN:
-                    qtyOut = (qtyInp * 3.1);
-                    break;
-                case LANG:
-                    qtyOut = (qtyInp * 31.25);
-                    break;
-                case PHAN:
-                    qtyOut = (qtyInp * 0.31);
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + unitInp);
-            }
-            return qtyOut;
+//        if (unitInp == UnitConstant.GAM.getValue()) {
+//            return qtyInp;
+//        } else {
+//            switch (unitInp) {
+//                case UnitConstant.CAN.getValue():
+//                    qtyOut = (qtyInp * 500);
+//                    break;
+//                case UnitConstant.LY.getValue():
+//                    qtyOut = (qtyInp * 0.03);
+//                    break;
+//                case UnitConstant.DONGCAN.getValue():
+//                    qtyOut = (qtyInp * 3.1);
+//                    break;
+//                case UnitConstant.LANG.getValue():
+//                    qtyOut = (qtyInp * 31.25);
+//                    break;
+//                case UnitConstant.PHAN.getValue():
+//                    qtyOut = (qtyInp * 0.31);
+//                    break;
+//            }
+//            return qtyOut;
+//        }
+        if (unitInp.equals(UnitConstant.GAM.getValue()))
+        {
+            qtyOut = qtyInp;
         }
-    }
+        else if(unitInp.equals(UnitConstant.CAN.getValue()))
+                     qtyOut = (qtyInp * 500);
+        else if (unitInp.equals(UnitConstant.LY.getValue()))
+                     qtyOut = (qtyInp * 0.03);
+        else if(unitInp.equals(UnitConstant.DONGCAN.getValue()))
+                     qtyOut = (qtyInp * 3.1);
+        else if(unitInp.equals(UnitConstant.LANG.getValue()))
+                     qtyOut = (qtyInp * 31.25);
+        else if(unitInp.equals(UnitConstant.PHAN.getValue()))
+                     qtyOut = (qtyInp * 0.31);
 
+        return qtyOut;
+    }
 }
 

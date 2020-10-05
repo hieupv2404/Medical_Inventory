@@ -6,6 +6,7 @@ import com.java1906.climan.data.model.ProductInfo;
 import com.java1906.climan.data.repo.CategoryValueRepository;
 import com.java1906.climan.data.repo.ProductInfoRepository;
 import com.java1906.climan.services.IProducInfoService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +23,14 @@ public class ProductInfoServiceImpl implements IProducInfoService {
     private ProductInfoRepository productInfoRepository;
 
     @Override
-    public List<ProductInfo> findAll() {
+    public List<ProductInfo> findAll(String productName, String categoryValue) {
+//        if(productName != null && !StringUtils.isEmpty(productName) || categoryValue != null && !StringUtils.isEmpty(categoryValue))
+//        {
+//            return invoiceCustomerRepository.findInvoiceExport(productName, categoryValue);
+//        }
+//        else {
+//            return invoiceCustomerRepository.findAllInvoiceExport();
+//        }
         return productInfoRepository.findAll();
     }
 
