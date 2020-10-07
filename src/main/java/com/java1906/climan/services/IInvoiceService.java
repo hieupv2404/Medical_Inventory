@@ -22,4 +22,8 @@ public interface IInvoiceService {
 
         void delete(int invoiceId);
 //    void save(ProductInfo productInfo);
+
+         InvoiceSupplier findImportById(Integer id);
+
+        InvoiceCustomer findExportById(Integer id);
 }

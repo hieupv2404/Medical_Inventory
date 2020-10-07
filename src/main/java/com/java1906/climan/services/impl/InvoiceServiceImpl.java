@@ -122,4 +122,14 @@ public class InvoiceServiceImpl implements IInvoiceService {
         }
         invoiceRepository.deleteById(invoiceId);
     }
+
+    @Override
+    public InvoiceSupplier findImportById(Integer id) {
+        return invoiceSupplierRepository.findImportById(id);
+    }
+
+    @Override
+    public InvoiceCustomer findExportById(Integer id) {
+        return invoiceCustomerRepository.findExportById(id);
+    }
 }

@@ -42,9 +42,9 @@ public class InvoiceExportController {
     double priceInTotal = 0;
     double priceOutTotal = 0;
 
-    @GetMapping("/invoiceExport")
+    @GetMapping("/invoices-export")
     @HasRole({"STAFF", "ADMIN", "DOCTOR"})
-    public ResponseEntity<List<InvoiceCustomer>> showInvoiceList(Model model,@RequestParam(value = "name") String name,
+    public ResponseEntity<List<InvoiceCustomer>> showInvoiceList(@RequestParam(value = "name") String name,
                                                                  @RequestParam(value = "code") String code,
                                                                  @RequestParam("email") String email) {
         invoiceCustomerReportRepository.deleteAll();
@@ -70,25 +70,24 @@ public class InvoiceExportController {
             invoiceCustomerReport.setId(invoiceExport1.getId());
             invoiceCustomerReportRepository.save(invoiceCustomerReport);
         }
-        model.addAttribute("titlePage","Invoice Export");
-        model.addAttribute("priceInTotal",priceInTotal);
-        model.addAttribute("priceOutTotal",priceOutTotal);
-        model.addAttribute("InvoiceCustomerList",invoiceExport);
-        return new ResponseEntity<>(HttpStatus.OK);
+
+        return new ResponseEntity<>(invoiceExport,HttpStatus.OK);
     }
 
     //get  by id
-    @GetMapping("/invoiceExport/{id}")
+    @GetMapping("/invoices-export/{id}")
     @HasRole({"STAFF", "ADMIN"})
-    public ResponseEntity<InvoiceExport> getInvoiceById(Model model,@PathVariable("id") Integer id) {
-        InvoiceExport invoiceExport = invoiceExportService.findById(id).get();
-        model.addAttribute("titlePage","Invoice Export");
-        model.addAttribute("InvoiceCustomerList",invoiceExport);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<InvoiceCustomer> getInvoiceById(@PathVariable("id") Integer id) {
+        InvoiceCustomer invoiceExport = invoiceService.findExportById(id);
+        if (invoiceExport == null)
+        {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(invoiceExport, HttpStatus.OK);
     }
 
   // create invoice
-    @PostMapping("/invoiceExport/")
+    @PostMapping("/invoices-export/")
     @HasRole({"STAFF", "ADMIN", "DOCTOR"})
     public ResponseEntity<Invoice> createInvoice(@RequestBody Invoice invoice){
         invoice.setType(2);
@@ -100,7 +99,7 @@ public class InvoiceExportController {
     }
 
     //update invoice
-    @PutMapping("/invoiceExport/{invoiceId}")
+    @PutMapping("/invoices-export/{invoiceId}")
     @HasRole({"STAFF", "ADMIN", "DOCTOR"})
     public ResponseEntity<Invoice> updateInvoice(@PathVariable("invoiceId") int invoiceId, @RequestBody Invoice invoice){
         return new ResponseEntity<>(invoiceService.update(invoiceId,invoice),HttpStatus.CREATED);
@@ -112,7 +111,7 @@ public class InvoiceExportController {
         return new ResponseEntity<>("Delete Ok",HttpStatus.OK);
     }
 
-    @GetMapping("/invoiceExport/report")
+    @GetMapping("/invoices-export/report")
     public ResponseEntity<String> reportForInvoiceExport() throws IOException {
 
         List<InvoiceCustomerReport> invoiceCustomerReports = invoiceCustomerReportRepository.findInvoiceExport();

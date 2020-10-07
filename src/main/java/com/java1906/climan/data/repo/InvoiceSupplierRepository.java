@@ -27,4 +27,10 @@ public interface InvoiceSupplierRepository extends JpaRepository<InvoiceSupplier
                 "  WHERE i.type = 1 AND i.active_flag = 1 AND s.supplier_id = i.supplier_id "
                 ,nativeQuery = true)
         List<InvoiceSupplier> findAllInvoiceImport();
+
+        @Query(value="SELECT i.id, i.code, i.in_total, i.out_total, i.created_date, i.updated_date, s.supplier_id, s.supplier_name, s.supplier_address, s.number_phone, s.email\n" +
+                "  FROM invoice i, supplier s" +
+                "  WHERE i.type = 1 AND i.active_flag = 1 AND s.supplier_id = i.supplier_id AND s.id=?1"
+                ,nativeQuery = true)
+        InvoiceSupplier findImportById(Integer id);
 }

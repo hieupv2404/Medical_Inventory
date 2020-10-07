@@ -17,7 +17,7 @@ public class CategoryController {
     private ICategoryService categoryService;
 
     //Get all category
-    @GetMapping("/category")
+    @GetMapping("/categories")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<List<Category>> showCategoryList(Model model, @RequestParam String categoryName) {
         List<Category> categoryList = categoryService.findAll(categoryName);
@@ -30,7 +30,7 @@ public class CategoryController {
     }
 
     //Get category by id
-    @GetMapping("/category/{id}")
+    @GetMapping("/categories/{id}")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<Object> getCategoryById(Model model,@PathVariable("id") Integer id) {
         System.out.println("Fetching category with id " + id);
@@ -44,7 +44,7 @@ public class CategoryController {
     }
 
     // Create category
-    @PostMapping("/category")
+    @PostMapping("/categories")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<String> createCategory(@RequestBody Category category) {
         if (category == null) {
@@ -55,7 +55,7 @@ public class CategoryController {
     }
 
     // Update category
-    @PutMapping("/category/{id}")
+    @PutMapping("/categories/{id}")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<String> updateCategory(@PathVariable("id") Integer id,
                                                  @RequestBody Category category) throws Exception {
@@ -64,7 +64,7 @@ public class CategoryController {
     }
 
     // Delete category
-    @DeleteMapping("/category/{id}")
+    @DeleteMapping("/categories/{id}")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<Category> deleteCategory(@PathVariable("id") Integer id) {
         Category category = categoryService.findById(id).get();

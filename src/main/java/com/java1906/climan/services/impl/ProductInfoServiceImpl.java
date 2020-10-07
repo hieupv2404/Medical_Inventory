@@ -23,15 +23,14 @@ public class ProductInfoServiceImpl implements IProducInfoService {
     private ProductInfoRepository productInfoRepository;
 
     @Override
-    public List<ProductInfo> findAll(String productName, String categoryValue) {
-//        if(productName != null && !StringUtils.isEmpty(productName) || categoryValue != null && !StringUtils.isEmpty(categoryValue))
-//        {
-//            return invoiceCustomerRepository.findInvoiceExport(productName, categoryValue);
-//        }
-//        else {
-//            return invoiceCustomerRepository.findAllInvoiceExport();
-//        }
-        return productInfoRepository.findAll();
+    public List<ProductInfo> findAll(String productName) {
+        if(productName != null && !StringUtils.isEmpty(productName))
+        {
+            return productInfoRepository.findProductInfoByName(productName);
+        }
+        else {
+            return productInfoRepository.findAll();
+        }
     }
 
     @Override

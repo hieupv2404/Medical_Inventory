@@ -75,6 +75,7 @@ public class CategoryServiceImpl implements ICategoryService {
         category1.setUpdateDate(new Date());
         return categoryRepository.save(category1);
     }
+
     @Override
     public void delete(Integer categoryId) {
         if (!categoryRepository.existsById(categoryId)) {

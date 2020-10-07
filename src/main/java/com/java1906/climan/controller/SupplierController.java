@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class SupplierController {
     @Autowired
     private ISupplierService supplierService;
 
     //Get all supplier
-    @GetMapping("/supplier")
+    @GetMapping("/suppliers")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<List<Supplier>> showSupplierList(@RequestParam(value = "name") String name,
                                    @RequestParam("email") String email) {
@@ -26,21 +26,21 @@ public class SupplierController {
     }
 
     //Get supplier by id
-    @GetMapping("/supplier/{supplierId}")
+    @GetMapping("/suppliers/{supplierId}")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<Object> getSupplierById(@PathVariable("supplierId") int supplierId) {
     return new ResponseEntity<>(supplierService.findById(supplierId),HttpStatus.OK);
     }
 
     // Create supplier
-    @PostMapping("/supplier")
+    @PostMapping("/suppliers")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<Supplier> createSupplier(@RequestBody Supplier supplier) {
 
         return new ResponseEntity<Supplier>(supplierService.save(supplier),HttpStatus.CREATED);
     }
     // Update supplier
-    @PutMapping("/supplier/{supplierId}")
+    @PutMapping("/suppliers/{supplierId}")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<Supplier> updateSupplier(@PathVariable("supplierId") Integer supplierId,
                                                  @RequestBody Supplier supplier) throws Exception {
@@ -48,7 +48,7 @@ public class SupplierController {
     }
 
     // Delete supplier
-    @DeleteMapping("/supplier/{supplierId}")
+    @DeleteMapping("/suppliers/{supplierId}")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<String> deleteSupplier(@PathVariable("supplierId") Integer supplierId) {
         supplierService.delete(supplierId);

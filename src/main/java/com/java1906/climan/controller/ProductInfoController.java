@@ -4,6 +4,7 @@ import com.java1906.climan.data.model.CategoryValue;
 import com.java1906.climan.data.model.ProductInfo;
 import com.java1906.climan.data.model.ProductInfoCategoryValue;
 import com.java1906.climan.data.repo.CategoryValueRepository;
+import com.java1906.climan.data.repo.ProductInStockRepository;
 import com.java1906.climan.interceptor.HasRole;
 import com.java1906.climan.services.ICategoryValueService;
 import com.java1906.climan.services.IProducInfoService;
@@ -31,32 +32,41 @@ class ProductInfoController {
     @Autowired
     private ICategoryValueService categoryValueService;
 
+//    @Autowired
+//    private CategoryValueByProduct categoryValueByProduct;
+
     @Autowired
     private IProductInfoCategoryValueService productInfoCategoryValueService;
+
+    @Autowired
+    private ProductInStockRepository productInStockRepository;
     //Get all product
-    @GetMapping("/productInfo")
+    @GetMapping("/products-info")
     @HasRole({"STAFF", "ADMIN", "DOCTOR"})
-    public ResponseEntity<Iterable<ProductInfo>> showProductList(Model model, @RequestParam("name") String productName,
-                                                                                                                        @RequestParam("categoryValue") String categoryValue) {
-        Iterable<ProductInfo> productList = productInfoService.findAll(productName, categoryValue);
-        model.addAttribute("productList",productList);
+    public ResponseEntity<List<ProductInfo>> showProductList(@RequestParam("name") String productName) {
+        List<ProductInfo> productList = productInfoService.findAll(productName);
+        for (ProductInfo productInfo: productList)
+        {
+            productInfo.setCategoryValueByFate(categoryValueService.findCategoryValueByFate(productInfo.getId()).getName());
+            productInfo.setCategoryValueByProperty(categoryValueService.findCategoryValueByProperty(productInfo.getId()).getName());
+            productInfo.setQtyInStock(productInStockRepository.findByProduct(productInfo.getId()).getQty());
+        }
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
 
     //Get all product by id
-    @GetMapping("/productInfo/{productId}")
+    @GetMapping("/products-info/{productId}")
     @HasRole({"STAFF", "ADMIN", "DOCTOR"})
-    public ResponseEntity<Iterable<ProductInfo>> showProductById(Model model, @PathVariable("productId") Integer productId) {
+    public ResponseEntity<ProductInfo> showProductById(@PathVariable("productId") Integer productId) {
         ProductInfo productInfo = productInfoService.findById(productId).get();
         if (productInfo == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        model.addAttribute("productInfo",productInfo);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(productInfo,HttpStatus.OK);
     }
 
     // Create product
-    @PostMapping("/productInfo")
+    @PostMapping("/products-info")
     @HasRole({"STAFF", "ADMIN", "DOCTOR"})
     public ResponseEntity<ProductInfo> createProduct(@RequestBody ProductInfo productInfo) {
         // Xu lý liên kêt n-n
@@ -73,7 +83,7 @@ class ProductInfoController {
     }
 
     // Update product
-    @PutMapping("/productInfo/{productInfoId}")
+    @PutMapping("/products-info/{productInfoId}")
     @HasRole({"STAFF", "ADMIN", "DOCTOR"})
     public ResponseEntity<ProductInfo> updateProduct(@PathVariable("productInfoId") int productInfoId,
                                                      @RequestBody ProductInfo productInfo) {
@@ -104,7 +114,7 @@ class ProductInfoController {
     }
 
     // Delete product
-    @DeleteMapping("/productInfo/{productInfoId}")
+    @DeleteMapping("/products-info/{productInfoId}")
     @HasRole({"STAFF", "ADMIN", "DOCTOR"})
     public ResponseEntity<String> deleteProduct(@PathVariable("productInfoId") Integer productInfoId) {
         productInfoService.delete(productInfoId);

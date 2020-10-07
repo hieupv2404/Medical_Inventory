@@ -125,4 +125,15 @@ public class CategoryValueServiceImpl implements ICategoryValueService {
     public void save(CategoryValue categoryValue) {
         categoryValueRepository.save(categoryValue);
     }
+
+    @Override
+    public CategoryValue findCategoryValueByFate(Integer productId) {
+        return categoryValueRepository.findCategoryValueByFate(productId);
+    }
+
+    @Override
+    public CategoryValue findCategoryValueByProperty(Integer productId) {
+        return categoryValueRepository.findCategoryValueByProperty(productId);
+
+    }
 }

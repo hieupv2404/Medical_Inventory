@@ -59,14 +59,14 @@ public class InvoiceExportServiceImpl implements IInvoiceExportService {
 
         Optional<Invoice> invoiceOptional = invoiceRepository.findById(invoiceId);
         Invoice invoice = invoiceOptional.get();
-        List<InvoiceExport> invoiceImportList = invoiceExportRepository.findAll();
-        List<InvoiceExport> invoiceImports = new ArrayList<>();
-        for(InvoiceExport invoiceImport : invoiceImportList)
+        List<InvoiceExport> invoiceExportList = invoiceExportRepository.findAll();
+        List<InvoiceExport> invoiceExports = new ArrayList<>();
+        for(InvoiceExport invoiceExport : invoiceExportList)
         {
-            if(invoiceImport.getInvoice() == invoice)
-                invoiceImports.add(invoiceImport);
+            if(invoiceExport.getInvoice() == invoice)
+                invoiceExports.add(invoiceExport);
         }
-        return invoiceImports;
+        return invoiceExports;
     }
 
     @Override
@@ -78,47 +78,47 @@ public class InvoiceExportServiceImpl implements IInvoiceExportService {
                 e.printStackTrace();
             }
         }
-        List<InvoiceExport> invoiceImports = new ArrayList<>();
-        List<InvoiceExport> invoiceImportList = invoiceExportRepository.findAll();
+        List<InvoiceExport> invoiceExports = new ArrayList<>();
+        List<InvoiceExport> invoiceExportList = invoiceExportRepository.findAll();
         Optional<Customer> supplierOptional = customerRepository.findById(supplierId);
-        Customer supplier = supplierOptional.get();
-        for (InvoiceExport invoiceImport : invoiceImportList)
+        Customer customer = supplierOptional.get();
+        for (InvoiceExport invoiceExport : invoiceExportList)
         {
-            if(invoiceImport.getCustomer() == supplier)
+            if(invoiceExport.getCustomer() == customer)
             {
-                invoiceImports.add(invoiceImport);
+                invoiceExports.add(invoiceExport);
             }
         }
-        return invoiceImports;
+        return invoiceExports;
     }
 
     @Override
-    public InvoiceExport save(InvoiceExport invoiceImport, int invoiceId, int supplierId) {
-        Optional<Customer> supplierOptional = customerRepository.findById(supplierId);
-        Customer supplier = supplierOptional.get();
+    public InvoiceExport save(InvoiceExport invoiceImport, int invoiceId, int customerId) {
+        Optional<Customer> customerOptional = customerRepository.findById(customerId);
+        Customer customer = customerOptional.get();
         Optional<Invoice> invoiceOptional = invoiceRepository.findById(invoiceId);
         Invoice invoice = invoiceOptional.get();
         invoiceImport.setInvoice(invoice);
-        invoiceImport.setCustomer(supplier);
+        invoiceImport.setCustomer(customer);
         return invoiceExportRepository.save(invoiceImport);
     }
 
     @Override
-    public InvoiceExport update(int invoiceId, int supplierId, InvoiceExport invoiceImport, int invoiceImportId) throws Exception {
-        if(!invoiceExportRepository.existsById(invoiceImportId)){
+    public InvoiceExport update(int invoiceId, int customerId, InvoiceExport invoiceExport, int invoiceExportId) throws Exception {
+        if(!invoiceExportRepository.existsById(invoiceExportId)){
             try{
-                throw new ResourceNotFoundException("Invoie Import with"+invoiceImportId+"not found");
+                throw new ResourceNotFoundException("Invoie Export with"+invoiceExportId+"not found");
             }catch (ResourceNotFoundException e){
                 e.printStackTrace();
             }
         }
-        Optional<Customer> supplierOptional = customerRepository.findById(supplierId);
-        Customer supplier = supplierOptional.get();
+        Optional<Customer> customerOptional = customerRepository.findById(customerId);
+        Customer customer = customerOptional.get();
         Optional<Invoice> invoiceOptional = invoiceRepository.findById(invoiceId);
         Invoice invoice = invoiceOptional.get();
-        invoiceImport.setInvoice(invoice);
-        invoiceImport.setCustomer(supplier);
-        return invoiceExportRepository.save(invoiceImport);
+        invoiceExport.setInvoice(invoice);
+        invoiceExport.setCustomer(customer);
+        return invoiceExportRepository.save(invoiceExport);
     }
 
     @Override

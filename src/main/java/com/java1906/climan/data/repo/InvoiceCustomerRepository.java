@@ -27,4 +27,11 @@ public interface InvoiceCustomerRepository extends JpaRepository<InvoiceCustomer
                 "                WHERE i.type = 2 AND i.active_flag = 1 AND c.id = i.customer_id "
                 ,nativeQuery = true)
         List<InvoiceCustomer> findAllInvoiceExport();
+
+        @Query(value="SELECT i.id, i.code, i.in_total, i.out_total, i.created_date, i.updated_date, c.id as 'customer_id', c.name, c.address, c.number_phone, c.email\n" +
+                "                FROM invoice i, customer c\n" +
+                "                WHERE i.type = 2 AND i.active_flag = 1 AND c.id = i.customer_id AND i.id=?1"
+                ,nativeQuery = true)
+        InvoiceCustomer findExportById(Integer id);
+
 }

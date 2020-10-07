@@ -43,9 +43,9 @@ public class InvoiceImportController {
     double priceInTotal = 0;
     double priceOutTotal = 0;
 
-    @GetMapping("/invoiceImport")
+    @GetMapping("/invoices-import")
     @HasRole({"STAFF", "ADMIN", "DOCTOR"})
-    public ResponseEntity<List<InvoiceSupplier>> showInvoiceList(Model model,@RequestParam(value = "name") String name,
+    public ResponseEntity<List<InvoiceSupplier>> showInvoiceList(@RequestParam(value = "name") String name,
                                                                  @RequestParam(value = "code") String code,
                                                                  @RequestParam("email") String email) {
         invoiceSupplierRepository.deleteAll();
@@ -70,23 +70,25 @@ public class InvoiceImportController {
             invoiceSupplierReport.setId(invoiceImport1.getId());
             invoiceSupplierReportRepository.save(invoiceSupplierReport);
         }
-        model.addAttribute("titlePage","Invoice Export");
-        model.addAttribute("priceInTotal",priceInTotal);
-        model.addAttribute("priceOutTotal",priceOutTotal);
-        model.addAttribute("InvoiceCustomerList",invoiceImport);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(invoiceImport,HttpStatus.OK);
     }
 
     //get  by id
-    @GetMapping("/invoiceImport/{id}")
+    @GetMapping("/invoices-import/{id}")
     @HasRole({"STAFF", "ADMIN"})
-    public ResponseEntity<Object> getInvoiceById(@PathVariable("id") Integer id) {
-        return new ResponseEntity<>(invoiceService.findById(id),HttpStatus.OK);
+    public ResponseEntity<InvoiceSupplier> getInvoiceById(@PathVariable("id") Integer id) {
+        InvoiceSupplier invoiceImport = invoiceService.findImportById(id);
+        if (invoiceImport == null)
+        {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(invoiceImport, HttpStatus.OK);
     }
+
   // create invoice
-    @PostMapping("/invoiceImport/")
+    @PostMapping("/invoices-import/")
     @HasRole({"STAFF", "ADMIN", "DOCTOR"})
-    public ResponseEntity<Invoice> createInvoce(@RequestBody Invoice invoice){
+    public ResponseEntity<Invoice> createInvoice(@RequestBody Invoice invoice){
         invoice.setType(1);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
@@ -96,7 +98,7 @@ public class InvoiceImportController {
     }
 
     //update invoice
-    @PutMapping("/invoiceImport/{invoiceId}")
+    @PutMapping("/invoices-import/{invoiceId}")
     @HasRole({"STAFF", "ADMIN", "DOCTOR"})
     public ResponseEntity<Invoice> updateInvoice(@PathVariable("invoiceId") int invoiceId, @RequestBody Invoice invoice){
         return new ResponseEntity<>(invoiceService.update(invoiceId,invoice),HttpStatus.CREATED);
@@ -108,7 +110,7 @@ public class InvoiceImportController {
         return new ResponseEntity<>("Delete Ok",HttpStatus.OK);
     }
 
-    @GetMapping("/invoiceImport/report")
+    @GetMapping("/invoices-import/report")
     public ResponseEntity<String> reportForInvoiceExport() throws IOException {
 
         List<InvoiceSupplierReport> invoiceSupplierReports = invoiceSupplierReportRepository.findInvoiceImport();

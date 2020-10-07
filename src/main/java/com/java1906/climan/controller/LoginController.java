@@ -40,7 +40,8 @@ public class LoginController {
     }
 
     @PostMapping( value = "/doLogin")
-    public String doLogin(@ModelAttribute Credential credential, HttpServletRequest request)  throws LogicException {
+    @ResponseBody
+    public Object doLogin(@ModelAttribute Credential credential, HttpServletRequest request)  throws LogicException {
 
         Optional<User> optionalUser = userService.findByUsername(credential.getUserName());
         if (optionalUser.isPresent()) {
@@ -55,13 +56,12 @@ public class LoginController {
                 if (userInfo.get() != null) {
                     userInfo.get().setToken(token);
                 }
-                return "redirect:" + "/index";
-//                return "index";
+                return userInfo.get();
             }
-            return "login";
+            return new LogicException("Invalid login", HttpStatus.NOT_FOUND);
         }
 
-        return "login";
+        return new LogicException("Invalid login", HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/index")
@@ -71,6 +71,7 @@ public class LoginController {
     }
 
     @GetMapping("/logout")
+    @ResponseBody
     public ResponseEntity logout(HttpSession session) {
         session.removeAttribute("role");
         session.removeAttribute("AuthToken");

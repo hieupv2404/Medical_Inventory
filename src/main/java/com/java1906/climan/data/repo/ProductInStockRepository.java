@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface ProductInStockRepository extends JpaRepository<ProductInStock,Integer> {
-    @Query(value = "select * from ProductInStock where ProductInStock .productInfo.name like %:productName% " +
-                                    "and ProductInStock .productInfo.categoryValues.")
-    ProductInStock findByProperty(@Param("productName") String productName, @Param("categoryValue") String categoryValue);
+    @Query(value = "select * from product_in_stock ps where ps.product_id = ?1",nativeQuery=true)
+    ProductInStock findByProduct(@Param("productId") Integer productId);
 }

@@ -21,21 +21,21 @@ public class InvoiceItemController {
     private IInvoiceService invoiceService;
 
     //Get all item
-    @GetMapping("/invoice/{id}/invoiceItem")
+    @GetMapping("/invoices/{id}/invoices-item")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<List<InvoiceItem>> showInvoiceItemList(@PathVariable("id") int invoiceId) {
         return new ResponseEntity <List<InvoiceItem>>(invoiceItemService.findAllByInvoiceId(invoiceId), HttpStatus.OK);
     }
 
     //GET ById
-    @GetMapping("invoice/invoiceItem/{id}")
+    @GetMapping("/invoices/invoices-item/{id}")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<Object> getInvoiceItemById(@PathVariable("id") Integer id) {
         return new ResponseEntity<>(invoiceItemService.findById(id),HttpStatus.OK);
     }
 
     // Create InvoiceItem
-    @PostMapping("/invoice/invoiceItem/")
+    @PostMapping("/invoices/invoices-item/")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<InvoiceItem> createInvoiceItem(
             @RequestParam int invoiceId,
@@ -46,7 +46,7 @@ public class InvoiceItemController {
     }
 
     // Update category value
-    @PutMapping("/invoice/invoiceItem/{InvoiceItemId}")
+    @PutMapping("/invoices/invoices-item/{InvoiceItemId}")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<InvoiceItem> updateInvoiceItem(@PathVariable("InvoiceItemId") Integer InvoiceItemId,
                                                               @RequestParam int productId, @RequestParam int unitId,
@@ -55,7 +55,7 @@ public class InvoiceItemController {
     }
 
     // Delete category value
-    @DeleteMapping("/invoice/invoiceItem/{InvoiceItemId}")
+    @DeleteMapping("/invoices/invoices-item/{InvoiceItemId}")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<String> deleteInvoiceItem(@PathVariable("InvoiceItemId") Integer InvoiceItemId) {
         invoiceItemService.delete(InvoiceItemId);

@@ -16,7 +16,7 @@ public class ProductInStockController {
     @Autowired
     private ProductInStockService productInStockService;
 
-    @GetMapping("/product-in-stock")
+    @GetMapping("/products-in-stock")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<Object> getProductInStock(@RequestParam("productName") String productName,
                                                                                                 @RequestParam("categoryValue") String categoryValue) {

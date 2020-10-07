@@ -21,6 +21,15 @@ public class ProductInfo implements Serializable {
     private Date createDate;
     private Date updateDate;
 
+    @Transient
+    private String categoryValueByFate;
+
+    @Transient
+    private String categoryValueByProperty;
+
+    @Transient
+    private double qtyInStock;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "product_info_category_value",
             joinColumns = {@JoinColumn(name = "productInfoId")},
@@ -123,5 +132,32 @@ public ProductInfo(String name,String description,String img_url,int activeFlag,
 
     public void setProductInStocks(List<ProductInStock> productInStocks) {
         this.productInStocks = productInStocks;
+    }
+
+    public String getCategoryValueByFate() {
+        return categoryValueByFate;
+    }
+
+    public ProductInfo setCategoryValueByFate(String categoryValueByFate) {
+        this.categoryValueByFate = categoryValueByFate;
+        return this;
+    }
+
+    public String getCategoryValueByProperty() {
+        return categoryValueByProperty;
+    }
+
+    public ProductInfo setCategoryValueByProperty(String categoryValueByProperty) {
+        this.categoryValueByProperty = categoryValueByProperty;
+        return this;
+    }
+
+    public double getQtyInStock() {
+        return qtyInStock;
+    }
+
+    public ProductInfo setQtyInStock(double qtyInStock) {
+        this.qtyInStock = qtyInStock;
+        return this;
     }
 }

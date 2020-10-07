@@ -19,19 +19,17 @@ public class CustomerController {
     private ICustomerService customerService;
 
     //Get all customer
-    @GetMapping("/customer")
+    @GetMapping("/customers")
     @HasRole({"STAFF", "ADMIN"})
-    public ResponseEntity<List<Customer>> showCustomerList(Model model, @RequestParam(value = "name") String name,
+    public ResponseEntity<List<Customer>> showCustomerList(@RequestParam(value = "name") String name,
                                                                                                                 @RequestParam("email") String email) {
         List<Customer> customerList = customerService.findAll(name,email);
-        model.addAttribute("titlePage","Customer List");
-        model.addAttribute("customerList",customerList);
         return new ResponseEntity<>(customerList,HttpStatus.OK);
 
     }
 
     //Get customer by id
-    @GetMapping("/customer/{customerId}")
+    @GetMapping("/customers/{customerId}")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<Object> getCustomerById(Model model,@PathVariable("customerId") int customerId) {
         Customer customer = customerService.findById(customerId).get();
@@ -41,14 +39,14 @@ public class CustomerController {
     }
 
     // Create customer
-    @PostMapping("/customer")
+    @PostMapping("/customers")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
 
         return new ResponseEntity<Customer>(customerService.save(customer),HttpStatus.CREATED);
     }
     // Update customer
-    @PutMapping("/customer/{customerId}")
+    @PutMapping("/customers/{customerId}")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<String> updateCustomer(@PathVariable("customerId") Integer customerId,
                                                  @RequestBody Customer customer) throws Exception {
@@ -57,7 +55,7 @@ public class CustomerController {
     }
 
     // Delete customer
-    @DeleteMapping("/customer/{customerId}")
+    @DeleteMapping("/customers/{customerId}")
     @HasRole({"STAFF", "ADMIN"})
     public ResponseEntity<String> deleteCustomer(@PathVariable("customerId") Integer customerId) {
         customerService.delete(customerId);
